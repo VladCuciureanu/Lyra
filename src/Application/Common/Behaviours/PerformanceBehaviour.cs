@@ -1,5 +1,4 @@
-﻿using System;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Lyra.Application.Common.Interfaces;
 using System.Diagnostics;
@@ -41,10 +40,10 @@ namespace Lyra.Application.Common.Behaviours
             if (elapsedMilliseconds > 500)
             {
                 var requestName = typeof(TRequest).Name;
-                var userId = _currentUserService.UserId ?? Guid.Empty;
+                var userId = _currentUserService.UserId ?? string.Empty;
                 var userName = string.Empty;
 
-                if (!userId.Equals(Guid.Empty))
+                if (!string.IsNullOrEmpty(userId))
                 {
                     userName = await _identityService.GetUserNameAsync(userId);
                 }

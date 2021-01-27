@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Lyra.Application.Common.Interfaces
+﻿namespace Lyra.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {
-        Guid? UserId { get; }
+        string UserId { get; }
     }
 }
