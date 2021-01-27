@@ -47,12 +47,8 @@ namespace Lyra.Application.Common.Behaviours
                         var authorized = false;
                         foreach (var role in roles)
                         {
-                            if (!_currentUserService.UserId.HasValue)
-                                break;
-
                             var isInRole =
-                                await _identityService.IsInRoleAsync(_currentUserService.UserId.Value, role.Trim());
-
+                                await _identityService.IsInRoleAsync(_currentUserService.UserId, role.Trim());
                             if (isInRole)
                             {
                                 authorized = true;
@@ -75,13 +71,7 @@ namespace Lyra.Application.Common.Behaviours
                 {
                     foreach (var policy in authorizeAttributesWithPolicies.Select(a => a.Policy))
                     {
-                        if (!_currentUserService.UserId.HasValue)
-                        {
-                            throw new ForbiddenAccessException();
-                        }
-
-                        var authorized =
-                            await _identityService.AuthorizeAsync(_currentUserService.UserId.Value, policy);
+                        var authorized = await _identityService.AuthorizeAsync(_currentUserService.UserId, policy);
 
                         if (!authorized)
                         {

@@ -1,5 +1,4 @@
-﻿using System;
-using Lyra.Application.Common.Interfaces;
+﻿using Lyra.Application.Common.Interfaces;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 using System.Threading;
@@ -24,10 +23,10 @@ namespace Lyra.Application.Common.Behaviours
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
-            var userId = _currentUserService.UserId ?? Guid.Empty;
-            var userName = string.Empty;
+            var userId = _currentUserService.UserId ?? string.Empty;
+            string userName = string.Empty;
 
-            if (!userId.Equals(Guid.Empty))
+            if (!string.IsNullOrEmpty(userId))
             {
                 userName = await _identityService.GetUserNameAsync(userId);
             }
