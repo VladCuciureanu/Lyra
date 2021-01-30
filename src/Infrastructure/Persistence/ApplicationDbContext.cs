@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Lyra.Domain.Entities;
 
 namespace Lyra.Infrastructure.Persistence
 {
@@ -30,7 +31,11 @@ namespace Lyra.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
-        //TODO: Add DbSets
+        public DbSet<Artist> Artists { get; set; }
+
+        public DbSet<Album> Albums { get; set; }
+        
+        public DbSet<Track> Tracks { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
