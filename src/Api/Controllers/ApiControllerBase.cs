@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Lyra.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public abstract class ApiControllerBase : ControllerBase
     {
         private ISender _mediator;
