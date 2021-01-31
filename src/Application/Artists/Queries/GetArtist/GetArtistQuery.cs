@@ -32,6 +32,7 @@ namespace Lyra.Application.Artists.Queries.GetArtist
         {
             var artist = await _context.Artists
                 .Include(e => e.Images)
+                .Include(e => e.Genres)
                 .SingleOrDefaultAsync(e => e.Id.Equals(request.Id), cancellationToken: cancellationToken);
             return _mapper.Map<ArtistDto>(artist);
         }

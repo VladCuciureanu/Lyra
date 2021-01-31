@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Lyra.Application.Albums;
 using Lyra.Application.Common.Mappings;
-using Lyra.Application.Tracks;
 using Lyra.Domain.Entities;
 
 namespace Lyra.Application.Artists
@@ -10,6 +8,7 @@ namespace Lyra.Application.Artists
     {
         public ArtistDto()
         {
+            Genres = new List<Genre>();
             Images = new List<Image>();
         }
 
@@ -18,6 +17,8 @@ namespace Lyra.Application.Artists
         public string Name { get; set; }
 
         public int Popularity { get; set; }
+        
+        public IList<Genre> Genres { get; private set; }
 
         public IList<Image> Images { get; private set; }
     }

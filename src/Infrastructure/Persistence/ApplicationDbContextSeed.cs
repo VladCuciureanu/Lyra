@@ -54,6 +54,17 @@ namespace Lyra.Infrastructure.Persistence
                             Width = 512,
                             Url = "bar.com"
                         }
+                    },
+                    Genres =
+                    {
+                        new Genre()
+                        {
+                            Name="Rock"
+                        },
+                        new Genre()
+                        {
+                            Name="Punk Rock"
+                        }
                     }
                 },
                 new Artist()
@@ -74,6 +85,17 @@ namespace Lyra.Infrastructure.Persistence
                             Height = 256,
                             Width = 256,
                             Url = "qux.com"
+                        }
+                    },
+                    Genres =
+                    {
+                        new Genre()
+                        {
+                            Name="Occult Hymn"
+                        },
+                        new Genre()
+                        {
+                            Name="Funk"
                         }
                     }
                 }
