@@ -10,6 +10,8 @@ namespace Lyra.Infrastructure.Persistence.Configurations
         {
             builder.Ignore(e => e.DomainEvents);
 
+            builder.HasKey(e => e.Id);
+
             builder.Property(e => e.Name)
                 .HasMaxLength(200)
                 .IsRequired();
