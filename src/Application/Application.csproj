@@ -18,4 +18,10 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Albums\Commands" />
+      <Folder Include="Albums\EventHandlers" />
+      <Folder Include="Albums\Queries" />
+    </ItemGroup>
+
 </Project>
