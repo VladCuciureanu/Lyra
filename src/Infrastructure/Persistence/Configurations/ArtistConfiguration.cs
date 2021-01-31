@@ -22,6 +22,8 @@ namespace Lyra.Infrastructure.Persistence.Configurations
             builder.HasMany(e => e.Albums)
                 .WithMany(e => e.Artists);
 
+            builder.HasMany(e => e.Genres);
+
             builder.HasMany(e => e.Images);
 
             builder.HasMany(e => e.Tracks)
