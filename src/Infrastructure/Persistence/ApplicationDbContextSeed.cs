@@ -59,11 +59,11 @@ namespace Lyra.Infrastructure.Persistence
                     {
                         new Genre()
                         {
-                            Name="Rock"
+                            Name = "Rock"
                         },
                         new Genre()
                         {
-                            Name="Punk Rock"
+                            Name = "Punk Rock"
                         }
                     }
                 },
@@ -91,11 +91,11 @@ namespace Lyra.Infrastructure.Persistence
                     {
                         new Genre()
                         {
-                            Name="Occult Hymn"
+                            Name = "Occult Hymn"
                         },
                         new Genre()
                         {
-                            Name="Funk"
+                            Name = "Funk"
                         }
                     }
                 }
@@ -109,7 +109,23 @@ namespace Lyra.Infrastructure.Persistence
                     Name = "Hamlet",
                     AlbumType = AlbumType.Album,
                     ReleaseDate = DateTime.Parse("01-01-2016"),
-                    Popularity = 100
+                    Popularity = 100,
+                    Genres =
+                    {
+                        new Genre()
+                        {
+                            Name = "A"
+                        }
+                    },
+                    Images =
+                    {
+                        new Image()
+                        {
+                            Height = 100,
+                            Width = 100,
+                            Url = "yeeeeet.com/img1.com"
+                        }
+                    }
                 },
                 new Album()
                 {
@@ -117,7 +133,23 @@ namespace Lyra.Infrastructure.Persistence
                     Name = "Romeo And Juliet",
                     AlbumType = AlbumType.Single,
                     ReleaseDate = DateTime.Parse("01-01-2017"),
-                    Popularity = 99
+                    Popularity = 99,
+                    Genres =
+                    {
+                        new Genre()
+                        {
+                            Name = "B"
+                        }
+                    },
+                    Images =
+                    {
+                        new Image()
+                        {
+                            Height = 200,
+                            Width = 200,
+                            Url = "yeeeeet.com/img2.com"
+                        }
+                    }
                 },
                 new Album()
                 {
@@ -125,7 +157,23 @@ namespace Lyra.Infrastructure.Persistence
                     Name = "Othello",
                     AlbumType = AlbumType.Compilation,
                     ReleaseDate = DateTime.Parse("01-01-2019"),
-                    Popularity = 98
+                    Popularity = 98,
+                    Genres =
+                    {
+                        new Genre()
+                        {
+                            Name = "C"
+                        }
+                    },
+                    Images =
+                    {
+                        new Image()
+                        {
+                            Height = 300,
+                            Width = 300,
+                            Url = "yeeeeet.com/img3.com"
+                        }
+                    }
                 }
             };
 
@@ -215,6 +263,7 @@ namespace Lyra.Infrastructure.Persistence
             artist = await context.Artists.FindAsync(2);
             album.Artists.Add(artist);
             track.Artists.Add(artist);
+            album.Tracks.Add(track);
 
             // Album 3
             album = await context.Albums.FindAsync(3);
