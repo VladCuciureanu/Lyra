@@ -28,7 +28,7 @@ namespace Lyra.Api.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<List<ArtistDto>>> GetArtist([FromQuery] GetMultipleArtistsQuery query)
+        public async Task<ActionResult<List<ArtistDto>>> GetMultipleArtists([FromQuery] GetMultipleArtistsQuery query)
         {
             return await Mediator.Send(query);
         }
