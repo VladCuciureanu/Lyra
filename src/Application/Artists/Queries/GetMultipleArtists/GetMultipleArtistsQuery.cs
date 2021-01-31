@@ -37,10 +37,10 @@ namespace Lyra.Application.Artists.Queries.GetMultipleArtists
             
             foreach (var requestId in request.Ids)
             {
-                var artist = _context.Artists
+                var artist = await _context.Artists
                     .Include(e => e.Images)
                     .Include(e => e.Genres)
-                    .SingleOrDefault(e => e.Id.Equals(requestId));
+                    .SingleOrDefaultAsync(e => e.Id.Equals(requestId));
 
                 result.Add(_mapper.Map<ArtistDto>(artist));
             }
