@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Lyra.Application.Albums;
 using Lyra.Application.Albums.Queries.GetAlbum;
+using Lyra.Application.Albums.Queries.GetMultipleAlbums;
 using Lyra.Application.Artists;
 using Lyra.Application.Common.Security;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +26,12 @@ namespace Lyra.Api.Controllers
                 return NotFound();
             else
                 return result;
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult<List<AlbumDto>>> GetMultipleAlbums([FromQuery] GetMultipleAlbumsQuery query)
+        {
+            return await Mediator.Send(query);
         }
     }
 }
