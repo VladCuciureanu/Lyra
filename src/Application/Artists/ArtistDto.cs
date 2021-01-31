@@ -10,9 +10,7 @@ namespace Lyra.Application.Artists
     {
         public ArtistDto()
         {
-            Albums = new List<SimplifiedAlbumDto>();
             Images = new List<Image>();
-            Tracks = new List<SimplifiedTrackDto>();
         }
 
         public int Id { get; set; }
@@ -21,10 +19,6 @@ namespace Lyra.Application.Artists
 
         public int Popularity { get; set; }
 
-        public IList<SimplifiedAlbumDto> Albums { get; private set; }
-
         public IList<Image> Images { get; private set; }
-
-        public IList<SimplifiedTrackDto> Tracks { get; private set; }
     }
 }

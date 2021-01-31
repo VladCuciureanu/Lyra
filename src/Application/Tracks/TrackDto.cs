@@ -11,7 +11,7 @@ namespace Lyra.Application.Tracks
     {
         public TrackDto()
         {
-            Artists = new List<SimplifiedArtistDto>();
+            Artists = new List<Artist>();
         }
 
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace Lyra.Application.Tracks
 
         public SimplifiedAlbumDto Album { get; set; }
 
-        public IList<SimplifiedArtistDto> Artists { get; private set; }
+        public IList<Artist> Artists { get; private set; }
 
         public void Mapping(Profile profile)
         {
