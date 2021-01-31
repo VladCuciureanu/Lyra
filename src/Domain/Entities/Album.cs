@@ -19,7 +19,7 @@ namespace Lyra.Domain.Entities
 
         public IList<Artist> Artists { get; private set; } = new List<Artist>();
 
-        public IList<string> Genres { get; private set; } = new List<string>();
+        public IList<Genre> Genres { get; private set; } = new List<Genre>();
 
         public IList<Image> Images { get; private set; } = new List<Image>();
 

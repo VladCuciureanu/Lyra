@@ -13,7 +13,7 @@ namespace Lyra.Application.Albums
         public AlbumDto()
         {
             Artists = new List<SimplifiedArtistDto>();
-            Genres = new List<string>();
+            Genres = new List<Genre>();
             Images = new List<Image>();
             Tracks = new List<SimplifiedTrackDto>();
         }
@@ -25,13 +25,13 @@ namespace Lyra.Application.Albums
         public int AlbumType { get; set; }
 
         public DateTime? ReleaseDate { get; set; }
-        
+
         public int Popularity { get; set; }
 
         public IList<SimplifiedArtistDto> Artists { get; private set; }
-        
-        public IList<string> Genres { get; private set; }
-        
+
+        public IList<Genre> Genres { get; private set; }
+
         public IList<Image> Images { get; private set; }
 
         public IList<SimplifiedTrackDto> Tracks { get; private set; }
