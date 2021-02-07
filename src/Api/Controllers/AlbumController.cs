@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Lyra.Application.Albums;
+using Lyra.Application.Albums.Commands.CreateAlbum;
 using Lyra.Application.Albums.Commands.DeleteAlbum;
 using Lyra.Application.Albums.Queries.GetAlbum;
 using Lyra.Application.Albums.Queries.GetMultipleAlbums;
@@ -12,6 +13,12 @@ namespace Lyra.Api.Controllers
     [Authorize]
     public class AlbumController : ApiControllerBase
     {
+        [HttpPost]
+        public async Task<ActionResult<int>> CreateAlbum(CreateAlbumCommand command)
+        {
+            return await Mediator.Send(command);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<AlbumDto>> GetAlbum(int id)
         {
@@ -32,7 +39,7 @@ namespace Lyra.Api.Controllers
         {
             return await Mediator.Send(query);
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAlbum(int id)
         {
