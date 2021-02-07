@@ -1,6 +1,6 @@
-﻿using Lyra.Application.Common.Models;
+﻿using System.Linq;
+using Lyra.Application.Common.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Linq;
 
 namespace Lyra.Infrastructure.Identity
 {

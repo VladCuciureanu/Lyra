@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System;
 
 namespace Lyra.Api.Extensions
 {
@@ -22,7 +22,7 @@ namespace Lyra.Api.Extensions
                             Email = "vlad.c.cuciureanu@gmail.com",
                             Name = "Vlad Cuciureanu",
                             Url = new Uri("https://github.com/VladCuciureanu")
-                        },
+                        }
                 });
             });
         }

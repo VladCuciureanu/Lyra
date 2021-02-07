@@ -28,7 +28,7 @@ namespace Lyra.Application.Albums.Queries.GetMultipleAlbums
         public async Task<List<AlbumDto>> Handle(GetMultipleAlbumsQuery request, CancellationToken cancellationToken)
         {
             var result = new List<AlbumDto>();
-            
+
             foreach (var requestId in request.Ids)
             {
                 var album = await _context.Albums

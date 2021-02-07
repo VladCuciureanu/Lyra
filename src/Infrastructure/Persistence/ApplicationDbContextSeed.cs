@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Lyra.Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 using Lyra.Domain.Entities;
 using Lyra.Domain.Enums;
+using Lyra.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lyra.Infrastructure.Persistence
 {
@@ -17,9 +17,7 @@ namespace Lyra.Infrastructure.Persistence
             var administratorRole = new IdentityRole("Administrator");
 
             if (roleManager.Roles.All(r => r.Name != administratorRole.Name))
-            {
                 await roleManager.CreateAsync(administratorRole);
-            }
 
             var administrator = new ApplicationUser
                 {UserName = "administrator@localhost", Email = "administrator@localhost"};
@@ -33,22 +31,22 @@ namespace Lyra.Infrastructure.Persistence
 
         public static async Task SeedSampleDataAsync(ApplicationDbContext context)
         {
-            var artists = new List<Artist>()
+            var artists = new List<Artist>
             {
-                new Artist()
+                new Artist
                 {
                     Id = 1,
                     Name = "Shakespeare",
                     Popularity = 100,
                     Images =
                     {
-                        new Image()
+                        new Image
                         {
                             Height = 1024,
                             Width = 1024,
                             Url = "foo.com"
                         },
-                        new Image()
+                        new Image
                         {
                             Height = 512,
                             Width = 512,
@@ -57,30 +55,30 @@ namespace Lyra.Infrastructure.Persistence
                     },
                     Genres =
                     {
-                        new Genre()
+                        new Genre
                         {
                             Name = "Rock"
                         },
-                        new Genre()
+                        new Genre
                         {
                             Name = "Punk Rock"
                         }
                     }
                 },
-                new Artist()
+                new Artist
                 {
                     Id = 2,
                     Name = "Leonardo da Vinci",
                     Popularity = 50,
                     Images =
                     {
-                        new Image()
+                        new Image
                         {
                             Height = 2048,
                             Width = 2048,
                             Url = "baz.com"
                         },
-                        new Image()
+                        new Image
                         {
                             Height = 256,
                             Width = 256,
@@ -89,11 +87,11 @@ namespace Lyra.Infrastructure.Persistence
                     },
                     Genres =
                     {
-                        new Genre()
+                        new Genre
                         {
                             Name = "Occult Hymn"
                         },
-                        new Genre()
+                        new Genre
                         {
                             Name = "Funk"
                         }
@@ -101,9 +99,9 @@ namespace Lyra.Infrastructure.Persistence
                 }
             };
 
-            var albums = new List<Album>()
+            var albums = new List<Album>
             {
-                new Album()
+                new Album
                 {
                     Id = 1,
                     Name = "Hamlet",
@@ -112,14 +110,14 @@ namespace Lyra.Infrastructure.Persistence
                     Popularity = 100,
                     Genres =
                     {
-                        new Genre()
+                        new Genre
                         {
                             Name = "A"
                         }
                     },
                     Images =
                     {
-                        new Image()
+                        new Image
                         {
                             Height = 100,
                             Width = 100,
@@ -127,7 +125,7 @@ namespace Lyra.Infrastructure.Persistence
                         }
                     }
                 },
-                new Album()
+                new Album
                 {
                     Id = 2,
                     Name = "Romeo And Juliet",
@@ -136,14 +134,14 @@ namespace Lyra.Infrastructure.Persistence
                     Popularity = 99,
                     Genres =
                     {
-                        new Genre()
+                        new Genre
                         {
                             Name = "B"
                         }
                     },
                     Images =
                     {
-                        new Image()
+                        new Image
                         {
                             Height = 200,
                             Width = 200,
@@ -151,7 +149,7 @@ namespace Lyra.Infrastructure.Persistence
                         }
                     }
                 },
-                new Album()
+                new Album
                 {
                     Id = 3,
                     Name = "Othello",
@@ -160,14 +158,14 @@ namespace Lyra.Infrastructure.Persistence
                     Popularity = 98,
                     Genres =
                     {
-                        new Genre()
+                        new Genre
                         {
                             Name = "C"
                         }
                     },
                     Images =
                     {
-                        new Image()
+                        new Image
                         {
                             Height = 300,
                             Width = 300,
@@ -177,9 +175,9 @@ namespace Lyra.Infrastructure.Persistence
                 }
             };
 
-            var tracks = new List<Track>()
+            var tracks = new List<Track>
             {
-                new Track()
+                new Track
                 {
                     Id = 1,
                     Name = "Hamlet",
@@ -190,7 +188,7 @@ namespace Lyra.Infrastructure.Persistence
                     DiscNumber = 1,
                     Popularity = 99
                 },
-                new Track()
+                new Track
                 {
                     Id = 2,
                     Name = "Romeo And Juliet",
@@ -201,7 +199,7 @@ namespace Lyra.Infrastructure.Persistence
                     DiscNumber = 1,
                     Popularity = 98
                 },
-                new Track()
+                new Track
                 {
                     Id = 3,
                     Name = "Othello",
@@ -212,7 +210,7 @@ namespace Lyra.Infrastructure.Persistence
                     DiscNumber = 1,
                     Popularity = 97
                 },
-                new Track()
+                new Track
                 {
                     Id = 4,
                     Name = "The Tempest",
@@ -223,7 +221,7 @@ namespace Lyra.Infrastructure.Persistence
                     DiscNumber = 1,
                     Popularity = 96
                 },
-                new Track()
+                new Track
                 {
                     Id = 5,
                     Name = "Double Falsehood",
@@ -233,7 +231,7 @@ namespace Lyra.Infrastructure.Persistence
                     TrackNumber = 5,
                     DiscNumber = 1,
                     Popularity = 95
-                },
+                }
             };
 
             artists.ForEach(e => context.Artists.AddAsync(e));

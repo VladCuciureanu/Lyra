@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using AutoMapper;
 using Lyra.Application.Albums;
 using Lyra.Application.Artists;
 using Lyra.Application.Common.Mappings;
@@ -30,6 +29,6 @@ namespace Lyra.Application.Tracks
 
         public SimplifiedAlbumDto Album { get; set; }
 
-        public IList<ArtistDto> Artists { get; private set; }
+        public IList<ArtistDto> Artists { get; }
     }
 }

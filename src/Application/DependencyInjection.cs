@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using Lyra.Application.Common.Behaviours;
+﻿using System.Reflection;
+using AutoMapper;
 using FluentValidation;
+using Lyra.Application.Common.Behaviours;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Lyra.Application
 {

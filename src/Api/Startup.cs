@@ -1,11 +1,11 @@
 using FluentValidation.AspNetCore;
+using Lyra.Api.Extensions;
+using Lyra.Api.Filters;
+using Lyra.Api.Services;
 using Lyra.Application;
 using Lyra.Application.Common.Interfaces;
 using Lyra.Infrastructure;
 using Lyra.Infrastructure.Persistence;
-using Lyra.Api.Services;
-using Lyra.Api.Extensions;
-using Lyra.Api.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -74,8 +74,8 @@ namespace Lyra.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    "default",
+                    "{controller}/{action=Index}/{id?}");
             });
         }
     }

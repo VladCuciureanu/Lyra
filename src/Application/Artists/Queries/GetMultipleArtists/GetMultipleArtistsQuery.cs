@@ -1,15 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Lyra.Application.Common.Interfaces;
-using Lyra.Application.Common.Mappings;
-using Lyra.Application.Common.Models;
-using Lyra.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,7 +28,7 @@ namespace Lyra.Application.Artists.Queries.GetMultipleArtists
         public async Task<List<ArtistDto>> Handle(GetMultipleArtistsQuery request, CancellationToken cancellationToken)
         {
             var result = new List<ArtistDto>();
-            
+
             foreach (var requestId in request.Ids)
             {
                 var artist = await _context.Artists

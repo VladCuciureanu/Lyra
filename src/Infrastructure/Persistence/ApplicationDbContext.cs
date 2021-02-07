@@ -1,15 +1,15 @@
-﻿using Lyra.Application.Common.Interfaces;
-using Lyra.Domain.Common;
-using Lyra.Infrastructure.Identity;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using IdentityServer4.EntityFramework.Options;
+using Lyra.Application.Common.Interfaces;
+using Lyra.Domain.Common;
 using Lyra.Domain.Entities;
+using Lyra.Infrastructure.Identity;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Lyra.Infrastructure.Persistence
 {
@@ -34,12 +34,12 @@ namespace Lyra.Infrastructure.Persistence
         public DbSet<Artist> Artists { get; set; }
 
         public DbSet<Album> Albums { get; set; }
-        
+
         public DbSet<Track> Tracks { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<AuditableEntity> entry in ChangeTracker
+            foreach (var entry in ChangeTracker
                 .Entries<AuditableEntity>())
             {
                 switch (entry.State)

@@ -1,5 +1,5 @@
-﻿using Lyra.Application.Common.Interfaces;
-using System;
+﻿using System;
+using Lyra.Application.Common.Interfaces;
 
 namespace Lyra.Infrastructure.Services
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
 using Lyra.Application.Artists;
 using Lyra.Application.Common.Mappings;
 using Lyra.Domain.Entities;
@@ -23,8 +22,8 @@ namespace Lyra.Application.Albums
 
         public DateTime? ReleaseDate { get; set; }
 
-        public IList<SimplifiedArtistDto> Artists { get; private set; }
+        public IList<SimplifiedArtistDto> Artists { get; }
 
-        public IList<Image> Images { get; private set; }
+        public IList<Image> Images { get; }
     }
 }

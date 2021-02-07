@@ -1,5 +1,5 @@
-﻿using Lyra.Application.Common.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Lyra.Application.Common.Models;
 
 namespace Lyra.Application.Common.Interfaces
 {

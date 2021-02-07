@@ -1,12 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Lyra.Application.Common.Interfaces;
-using Lyra.Application.Common.Mappings;
-using Lyra.Application.Common.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +29,7 @@ namespace Lyra.Application.Artists.Queries.GetArtist
             var artist = await _context.Artists
                 .Include(e => e.Images)
                 .Include(e => e.Genres)
-                .SingleOrDefaultAsync(e => e.Id.Equals(request.Id), cancellationToken: cancellationToken);
+                .SingleOrDefaultAsync(e => e.Id.Equals(request.Id), cancellationToken);
             return _mapper.Map<ArtistDto>(artist);
         }
     }

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Lyra.Application.Tracks;
-using Lyra.Application.Tracks.Queries.GetTrack;
 using Lyra.Application.Common.Security;
+using Lyra.Application.Tracks;
 using Lyra.Application.Tracks.Queries.GetMultipleTracks;
+using Lyra.Application.Tracks.Queries.GetTrack;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lyra.Api.Controllers
@@ -14,17 +14,16 @@ namespace Lyra.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TrackDto>> GetTrack(int id)
         {
-            var query = new GetTrackQuery()
+            var query = new GetTrackQuery
             {
                 Id = id
             };
 
             var result = await Mediator.Send(query);
-            
+
             if (result == null)
                 return NotFound();
-            else
-                return result;
+            return result;
         }
 
         [HttpGet]

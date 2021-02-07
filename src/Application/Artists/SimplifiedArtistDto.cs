@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Lyra.Application.Common.Mappings;
+﻿using Lyra.Application.Common.Mappings;
 using Lyra.Domain.Entities;
 
 namespace Lyra.Application.Artists

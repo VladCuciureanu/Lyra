@@ -1,9 +1,9 @@
-﻿using Lyra.Application.Common.Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using Lyra.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
 
 namespace Lyra.Api.Filters
 {
@@ -18,21 +18,21 @@ namespace Lyra.Api.Filters
                 {typeof(ValidationException), HandleValidationException},
                 {typeof(NotFoundException), HandleNotFoundException},
                 {typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException},
-                {typeof(ForbiddenAccessException), HandleForbiddenAccessException},
+                {typeof(ForbiddenAccessException), HandleForbiddenAccessException}
             };
         }
 
         public override void OnException(ExceptionContext context)
         {
             HandleException(context);
-            
+
             base.OnException(context);
         }
 
         private void HandleException(ExceptionContext context)
         {
             var type = context.Exception.GetType();
-            
+
             if (_exceptionHandlers.ContainsKey(type))
             {
                 _exceptionHandlers[type].Invoke(context);
@@ -44,7 +44,7 @@ namespace Lyra.Api.Filters
                 HandleInvalidModelStateException(context);
                 return;
             }
-            
+
             HandleUnknownException(context);
         }
 
@@ -82,7 +82,7 @@ namespace Lyra.Api.Filters
         {
             var exception = context.Exception as NotFoundException;
 
-            var details = new ProblemDetails()
+            var details = new ProblemDetails
             {
                 Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
                 Title = "The specified resource was not found.",

@@ -14,7 +14,7 @@ namespace Lyra.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ArtistDto>> GetArtist(int id)
         {
-            var query = new GetArtistQuery()
+            var query = new GetArtistQuery
             {
                 Id = id
             };
@@ -23,10 +23,9 @@ namespace Lyra.Api.Controllers
 
             if (result == null)
                 return NotFound();
-            else
-                return result;
+            return result;
         }
-        
+
         [HttpGet]
         public async Task<ActionResult<List<ArtistDto>>> GetMultipleArtists([FromQuery] GetMultipleArtistsQuery query)
         {

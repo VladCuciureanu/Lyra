@@ -23,7 +23,7 @@ namespace Lyra.Domain.Entities
 
         public Album Album { get; set; }
 
-        public IList<Artist> Artists { get; private set; } = new List<Artist>();
+        public IList<Artist> Artists { get; } = new List<Artist>();
 
         public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }

@@ -1,10 +1,10 @@
-﻿using Lyra.Application.Common.Interfaces;
+﻿using System;
+using System.Threading.Tasks;
+using Lyra.Application.Common.Interfaces;
 using Lyra.Application.Common.Models;
 using Lyra.Domain.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace Lyra.Infrastructure.Services
 {

@@ -17,9 +17,9 @@ namespace Lyra.Application.Artists
         public string Name { get; set; }
 
         public int Popularity { get; set; }
-        
-        public IList<Genre> Genres { get; private set; }
 
-        public IList<Image> Images { get; private set; }
+        public IList<Genre> Genres { get; }
+
+        public IList<Image> Images { get; }
     }
 }

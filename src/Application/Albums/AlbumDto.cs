@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
 using Lyra.Application.Artists;
 using Lyra.Application.Common.Mappings;
 using Lyra.Application.Tracks;
@@ -28,12 +27,12 @@ namespace Lyra.Application.Albums
 
         public int Popularity { get; set; }
 
-        public IList<SimplifiedArtistDto> Artists { get; private set; }
+        public IList<SimplifiedArtistDto> Artists { get; }
 
-        public IList<Genre> Genres { get; private set; }
+        public IList<Genre> Genres { get; }
 
-        public IList<Image> Images { get; private set; }
+        public IList<Image> Images { get; }
 
-        public IList<SimplifiedTrackDto> Tracks { get; private set; }
+        public IList<SimplifiedTrackDto> Tracks { get; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Lyra.Domain.Common;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Lyra.Domain.Common;
 
 namespace Lyra.Application.Common.Interfaces
 {

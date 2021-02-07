@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Lyra.Domain.Common;
+
 // ReSharper disable CollectionNeverUpdated.Global
 
 namespace Lyra.Domain.Entities
@@ -12,13 +13,13 @@ namespace Lyra.Domain.Entities
 
         public int Popularity { get; set; }
 
-        public IList<Album> Albums { get; private set; } = new List<Album>();
-        
-        public IList<Genre> Genres { get; private set; } = new List<Genre>();
+        public IList<Album> Albums { get; } = new List<Album>();
 
-        public IList<Image> Images { get; private set; } = new List<Image>();
+        public IList<Genre> Genres { get; } = new List<Genre>();
 
-        public IList<Track> Tracks { get; private set; } = new List<Track>();
+        public IList<Image> Images { get; } = new List<Image>();
+
+        public IList<Track> Tracks { get; } = new List<Track>();
 
         public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }

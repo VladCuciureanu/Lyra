@@ -1,18 +1,18 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
-using Lyra.Application.Common.Interfaces;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Lyra.Application.Common.Interfaces;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Lyra.Application.Common.Behaviours
 {
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly Stopwatch _timer;
-        private readonly ILogger<TRequest> _logger;
         private readonly ICurrentUserService _currentUserService;
         private readonly IIdentityService _identityService;
+        private readonly ILogger<TRequest> _logger;
+        private readonly Stopwatch _timer;
 
         public PerformanceBehaviour(
             ILogger<TRequest> logger,

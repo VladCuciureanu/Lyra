@@ -37,7 +37,7 @@ namespace Lyra.Application.Tracks.Queries.GetMultipleTracks
                     .Include(e => e.Artists).ThenInclude(a => a.Genres)
                     .Include(e => e.Artists).ThenInclude(a => a.Images)
                     .SingleOrDefaultAsync(e => e.Id.Equals(requestId));
-                
+
                 result.Add(_mapper.Map<TrackDto>(track));
             }
 

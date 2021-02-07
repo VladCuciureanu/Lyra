@@ -24,6 +24,6 @@ namespace Lyra.Application.Tracks
 
         public int DiscNumber { get; set; }
 
-        public IList<SimplifiedArtistDto> Artists { get; private set; }
+        public IList<SimplifiedArtistDto> Artists { get; }
     }
 }

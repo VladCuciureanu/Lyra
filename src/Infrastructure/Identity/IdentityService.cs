@@ -1,18 +1,18 @@
-﻿using Lyra.Application.Common.Interfaces;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Lyra.Application.Common.Interfaces;
 using Lyra.Application.Common.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lyra.Infrastructure.Identity
 {
     public class IdentityService : IIdentityService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public IdentityService(
             UserManager<ApplicationUser> userManager,
@@ -36,7 +36,7 @@ namespace Lyra.Infrastructure.Identity
             var user = new ApplicationUser
             {
                 UserName = userName,
-                Email = userName,
+                Email = userName
             };
 
             var result = await _userManager.CreateAsync(user, password);
