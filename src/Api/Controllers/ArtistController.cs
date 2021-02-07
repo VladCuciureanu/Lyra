@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Lyra.Application.Artists;
 using Lyra.Application.Artists.Commands.CreateArtist;
 using Lyra.Application.Artists.Commands.DeleteArtist;
+using Lyra.Application.Artists.Commands.UpdateArtist;
 using Lyra.Application.Artists.Queries.GetArtist;
 using Lyra.Application.Artists.Queries.GetMultipleArtists;
 using Lyra.Application.Common.Security;
@@ -38,6 +39,19 @@ namespace Lyra.Api.Controllers
         public async Task<ActionResult<List<ArtistDto>>> GetMultipleArtists([FromQuery] GetMultipleArtistsQuery query)
         {
             return await Mediator.Send(query);
+        }
+        
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateArtist(int id, UpdateArtistCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+
+            return Ok();
         }
         
         [HttpDelete("{id}")]
