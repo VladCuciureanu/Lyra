@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Lyra.Application.Tracks;
 using Lyra.Application.Tracks.Queries.GetTrack;
 using Lyra.Application.Common.Security;
+using Lyra.Application.Tracks.Queries.GetMultipleTracks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lyra.Api.Controllers
@@ -24,6 +25,12 @@ namespace Lyra.Api.Controllers
                 return NotFound();
             else
                 return result;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<TrackDto>>> GetMultipleTracks([FromQuery] GetMultipleTracksQuery query)
+        {
+            return await Mediator.Send(query);
         }
     }
 }
