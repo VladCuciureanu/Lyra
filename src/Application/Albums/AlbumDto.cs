@@ -35,11 +35,5 @@ namespace Lyra.Application.Albums
         public IList<Image> Images { get; private set; }
 
         public IList<SimplifiedTrackDto> Tracks { get; private set; }
-
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<Album, AlbumDto>()
-                .ForMember(d => d.AlbumType, opt => opt.MapFrom(s => (int) s.AlbumType));
-        }
     }
 }
