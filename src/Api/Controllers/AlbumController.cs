@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Lyra.Application.Albums;
 using Lyra.Application.Albums.Commands.CreateAlbum;
 using Lyra.Application.Albums.Commands.DeleteAlbum;
+using Lyra.Application.Albums.Commands.UpdateAlbum;
 using Lyra.Application.Albums.Queries.GetAlbum;
 using Lyra.Application.Albums.Queries.GetMultipleAlbums;
 using Lyra.Application.Common.Security;
@@ -40,6 +41,19 @@ namespace Lyra.Api.Controllers
             return await Mediator.Send(query);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateAlbum(int id, UpdateAlbumCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+
+            return Ok();
+        }
+        
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAlbum(int id)
         {
