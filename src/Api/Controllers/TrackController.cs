@@ -4,6 +4,7 @@ using Lyra.Application.Common.Security;
 using Lyra.Application.Tracks;
 using Lyra.Application.Tracks.Commands.CreateTrack;
 using Lyra.Application.Tracks.Commands.DeleteTrack;
+using Lyra.Application.Tracks.Commands.UpdateTrack;
 using Lyra.Application.Tracks.Queries.GetMultipleTracks;
 using Lyra.Application.Tracks.Queries.GetTrack;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +41,19 @@ namespace Lyra.Api.Controllers
             return await Mediator.Send(query);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateTrack(int id, UpdateTrackCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+
+            return Ok();
+        }
+        
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTrack(int id)
         {
