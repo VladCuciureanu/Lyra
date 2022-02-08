@@ -1,0 +1,18 @@
+{
+  "extends": ["config:base"],
+  "baseBranches": ["develop"],
+  "automerge": true,
+  "major": { "automerge": false },
+  "requiredStatusChecks": null,
+  "packageRules": [
+    {
+      "packagePatterns": ["eslint"],
+      "groupName": "eslint"
+    },
+    {
+      "packagePatterns": ["@types/"],
+      "groupName": "@types"
+    }
+  ],
+  "ignoreDeps": ["prisma", "@prisma/client", "react-native-safe-area-context", "react-native"]
+}

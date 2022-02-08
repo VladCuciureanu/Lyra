@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../../../../node_modules/@generated"
+  emitOnly = "inputs,enums,crudResolvers"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Models
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String   @unique
+  /// @TypeGraphQL.omit(output: true)
+  password  String
+  firstName String
+  lastName  String
+  avatar    String?
+  role      Role     @default(USER)
+  bio       String?
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+
+  followers     UserToUser[] @relation("UserToUser_followers")
+  followedUsers UserToUser[] @relation("UserToUser_followedUsers")
+  playlists     Playlist[]
+}
+
+model Artist {
+  id     String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name   String
+  avatar String?
+  bio    String?
+  tracks Track[]
+}
+
+model Album {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  coverArt   String?
+  releasedAt DateTime
+  tracks     Track[]
+}
+
+model Genre {
+  id     String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name   String
+  tracks Track[]
+}
+
+model Track {
+  id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  playlists Playlist[]
+  genres    Genre[]
+  artists   Artist[]
+  albums    Album[]
+}
+
+model Playlist {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title         String
+  description   String?
+  followers     User[]
+  tracks        Track[]
+  collaborative Boolean @default(false)
+  private       Boolean @default(false)
+}
+
+// Relational Tables
+
+model UserToUser {
+  follower       User   @relation("UserToUser_followers", fields: [followerId], references: [id])
+  followerId     String @db.Uuid
+  followedUser   User   @relation("UserToUser_followedUsers", fields: [followedUserId], references: [id])
+  followedUserId String @db.Uuid
+
+  @@id([followerId, followedUserId])
+  @@map("_UserToUser")
+}
