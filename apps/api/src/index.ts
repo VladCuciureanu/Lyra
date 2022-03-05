@@ -1,11 +1,28 @@
-import express from 'express'
+import "dotenv/config"
+import { prisma } from "./lib/prisma"
+import { Server } from "./lib/server"
 
-const app = express()
+class App extends Server {
+  constructor() {
+    super()
+    this.init().catch((error) => {
+      this.logger.error(error)
+      process.exit(1)
+    })
+  }
 
-app.use(express.json())
+  async init() {
+    await this.setUpDb()
+    this.app.get("/", (_req, res) => {
+      res.send("Hello World!")
+    })
+    this.start()
+  }
 
-app.get('/', async (_req, res) => {
-    res.send("Hello World!")
-})
+  async setUpDb() {
+    await prisma.$connect()
+    this.logger.info("DB Ready")
+  }
+}
 
-app.listen(3000, () => console.log('🚀 Server ready at: http://localhost:3000'))
+new App()
