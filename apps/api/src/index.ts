@@ -13,15 +13,22 @@ class App extends Server {
 
   async init() {
     await this.setUpDb()
-    this.app.get("/", (_req, res) => {
-      res.send("Hello World!")
-    })
+    await this.setUpAuth()
+    await this.setUpModules()
     this.start()
   }
 
   async setUpDb() {
     await prisma.$connect()
     this.logger.info("DB Ready")
+  }
+
+  async setUpAuth() {
+    // TODO
+  }
+
+  async setUpModules() {
+    // TODO
   }
 }
 
