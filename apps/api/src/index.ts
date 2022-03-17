@@ -1,5 +1,6 @@
 import "dotenv/config"
 import { prisma } from "./lib/prisma"
+import { getModules as getModules } from "./lib/modules"
 import { Server } from "./lib/server"
 
 class App extends Server {
@@ -28,7 +29,9 @@ class App extends Server {
   }
 
   async setUpModules() {
-    // TODO
+    getModules().forEach((applicationModule) =>
+      this.app.use("/" + applicationModule.name, applicationModule.router),
+    )
   }
 }
 

@@ -12,3 +12,6 @@ export const IS_PRODUCTION = APP_ENV === "production"
 
 // WEB URL
 export const FULL_WEB_URL = `${IS_PRODUCTION ? "https://" : "http://"}${WEB_URL}`
+
+// MODULE ROUTER PATHS
+export const MODULE_ROUTER_PATHS = "/modules/**/*routes.{js,ts}"
