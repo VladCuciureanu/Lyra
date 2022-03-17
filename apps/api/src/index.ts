@@ -2,6 +2,7 @@ import "dotenv/config"
 import { prisma } from "./lib/prisma"
 import { getModules as getModules } from "./lib/modules"
 import { Server } from "./lib/server"
+import { loadHooks } from "./lib/hooks"
 
 class App extends Server {
   constructor() {
@@ -33,6 +34,7 @@ class App extends Server {
       this.app.use("/" + applicationModule.name, applicationModule.router)
       this.logger.info(`⚙️ Loaded module '${applicationModule.name}' at '/${applicationModule.name}'!`)
     })
+    loadHooks()
   }
 }
 

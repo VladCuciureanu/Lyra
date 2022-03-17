@@ -15,3 +15,6 @@ export const FULL_WEB_URL = `${IS_PRODUCTION ? "https://" : "http://"}${WEB_URL}
 
 // MODULE ROUTER PATHS
 export const MODULE_ROUTER_PATHS = "/modules/**/routes.{js,ts}"
+
+// HOOK PATHS
+export const MODULE_HOOKS_PATHS = "/modules/**/hooks.{js,ts}"
