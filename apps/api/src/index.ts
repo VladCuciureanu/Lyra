@@ -21,7 +21,7 @@ class App extends Server {
 
   async setUpDb() {
     await prisma.$connect()
-    this.logger.info("DB Ready")
+    this.logger.info("🗄️ The database is ready!")
   }
 
   async setUpAuth() {
@@ -29,9 +29,10 @@ class App extends Server {
   }
 
   async setUpModules() {
-    getModules().forEach((applicationModule) =>
-      this.app.use("/" + applicationModule.name, applicationModule.router),
-    )
+    getModules().forEach((applicationModule) => {
+      this.app.use("/" + applicationModule.name, applicationModule.router)
+      this.logger.info(`⚙️ Loaded module '${applicationModule.name}' at '/${applicationModule.name}'!`)
+    })
   }
 }
 
