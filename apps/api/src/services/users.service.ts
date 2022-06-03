@@ -1,6 +1,6 @@
 import { hash } from 'bcrypt';
 import { PrismaClient, User } from '@prisma/client';
-import { CreateUserDto } from '@dtos/users.dto';
+import { UserDto } from '@dtos/users.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { isEmpty } from '@utils/util';
 
@@ -21,7 +21,7 @@ class UserService {
     return matchedUserData;
   }
 
-  public async createUser(userData: CreateUserDto): Promise<User> {
+  public async createUser(userData: UserDto): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
 
     const matchedUserData: User = await this.users.findUnique({ where: { email: userData.email } });
@@ -32,7 +32,7 @@ class UserService {
     return createUserData;
   }
 
-  public async updateUser(userId: number, userData: CreateUserDto): Promise<User> {
+  public async updateUser(userId: number, userData: UserDto): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
 
     const matchedUserData: User = await this.users.findUnique({ where: { id: userId } });

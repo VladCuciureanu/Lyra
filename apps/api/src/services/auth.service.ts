@@ -2,7 +2,7 @@ import { compare, hash } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { PrismaClient, User } from '@prisma/client';
 import { SECRET_KEY } from '@config';
-import { CreateUserDto } from '@dtos/users.dto';
+import { UserDto } from '@dtos/users.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
 import { isEmpty } from '@utils/util';
@@ -10,19 +10,7 @@ import { isEmpty } from '@utils/util';
 class AuthService {
   public users = new PrismaClient().user;
 
-  public async signup(userData: CreateUserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
-
-    const matchedUserData: User = await this.users.findUnique({ where: { email: userData.email } });
-    if (matchedUserData) throw new HttpException(409, `Provided email ${userData.email} is already in use by another account.`);
-
-    const hashedPassword = await hash(userData.password, 10);
-    const createUserData: Promise<User> = this.users.create({ data: { ...userData, password: hashedPassword } });
-
-    return createUserData;
-  }
-
-  public async login(userData: CreateUserDto): Promise<{ tokenData: TokenData; matchedUserData: User }> {
+  public async login(userData: UserDto): Promise<TokenData> {
     if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
 
     const matchedUserData: User = await this.users.findUnique({ where: { email: userData.email } });
@@ -33,7 +21,7 @@ class AuthService {
 
     const tokenData = this.createToken(matchedUserData);
 
-    return { tokenData, matchedUserData };
+    return tokenData;
   }
 
   public createToken(user: User): TokenData {

@@ -1,5 +1,4 @@
 import compression from 'compression';
-import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -58,33 +57,7 @@ class App {
   }
 
   private initializeSwagger() {
-    const options = {
-      definition: {
-        openapi: '3.0.3',
-        info: {
-          title: 'Lyra API',
-          version: '1.0.0',
-          description: "This is the specification of the application's REST API.",
-        },
-        components: {
-          securitySchemes: {
-            bearerAuth: {
-              type: 'http',
-              scheme: 'bearer',
-              bearerFormat: 'JWT',
-            },
-          },
-        },
-        security: [
-          {
-            bearerAuth: [],
-          },
-        ],
-      },
-      apis: ['swagger.yaml'],
-    };
-
-    const specs = swaggerJSDoc(options);
+    const specs = swaggerJSDoc(swaggerOptions);
     this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
   }
 
@@ -92,5 +65,31 @@ class App {
     this.app.use(errorMiddleware);
   }
 }
+
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.3',
+    info: {
+      title: 'Lyra API',
+      version: '1.0.0',
+      description: "This is the specification of the application's REST API.",
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+  },
+  apis: ['swagger.yaml'],
+};
 
 export default App;
