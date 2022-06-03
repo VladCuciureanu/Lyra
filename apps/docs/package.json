@@ -1,8 +1,13 @@
 {
   "name": "@lyra/docs",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
   "license": "GPL-3.0",
+  "private": true,
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "dev@vladinski.md",
+    "url": "https://vladinski.md"
+  },
   "scripts": {
     "dev": "start-storybook -p 6006",
     "build": "build-storybook --docs",

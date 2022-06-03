@@ -1,11 +1,17 @@
 {
   "name": "@lyra/utils",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "private": true,
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "dev@vladinski.md",
+    "url": "https://vladinski.md"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
-  "license": "GPL-3.0",
   "files": [
     "dist/**"
   ],
@@ -24,8 +30,5 @@
     "react": "^18.1.0",
     "tsup": "^5.10.1",
     "typescript": "^4.5.3"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

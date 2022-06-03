@@ -1,13 +1,17 @@
 {
   "name": "@lyra/tsconfig",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "GPL-3.0",
+  "private": true,
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "dev@vladinski.md",
+    "url": "https://vladinski.md"
+  },
   "main": "index.js",
   "files": [
     "base.json",
+    "api.json",
     "react-library.json"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+  ]
 }

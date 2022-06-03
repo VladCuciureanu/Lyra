@@ -1,14 +1,17 @@
 {
   "name": "@lyra/eslint-config",
-  "version": "0.0.0",
-  "main": "index.js",
+  "version": "1.0.0",
   "license": "GPL-3.0",
+  "private": true,
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "dev@vladinski.md",
+    "url": "https://vladinski.md"
+  },
+  "main": "index.js",
   "dependencies": {
     "eslint-config-next": "^12.0.8",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "7.29.4"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

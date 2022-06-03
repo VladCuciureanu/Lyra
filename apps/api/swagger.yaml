@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  description: "This is the specification of the application's REST API."
+  version: '1.0.0'
+  title: 'Lyra API'
+  contact:
+    email: 'dev@vladinski.md'
+  license:
+    name: 'GPL-3.0'
+    url: 'https://github.com/VladCuciureanu/Lyra/blob/master/LICENSE.md'
+tags:
+  - name: auth
+    description: Authorization Endpoints
+  - name: users
+    description: Users Endpoints
+paths:
+  /login:
+    post:
+      tags:
+        - auth
+      name: 'Login'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Generate Bearer Token By Logging In
+      requestBody:
+        description: Account Data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Bad Request
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+  /logout:
+    post:
+      tags:
+        - auth
+      name: 'Log Out'
+      summary: Log Out User
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+  /signup:
+    post:
+      tags:
+        - auth
+      name: 'Sign Up'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Create User
+      requestBody:
+        description: Account Data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '400':
+          description: Bad Request
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+      x-codegen-request-body-name: body
+  /users:
+    get:
+      tags:
+        - users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Find All Users
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+    post:
+      tags:
+        - users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Add User
+      requestBody:
+        description: User Data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content: {}
+        '400':
+          description: Bad Request
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+      x-codegen-request-body-name: body
+  /users/{id}:
+    get:
+      tags:
+        - users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Find User By Id
+      parameters:
+        - name: id
+          in: path
+          description: User Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+    put:
+      tags:
+        - users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Update User By Id
+      parameters:
+        - name: id
+          in: path
+          description: User Id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: User Data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Bad Request
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - users
+      summary: Delete User By Id
+      parameters:
+        - name: id
+          in: path
+          description: User Id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+components:
+  schemas:
+    users:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+          description: User Email
+        password:
+          type: string
+          description: User Password
