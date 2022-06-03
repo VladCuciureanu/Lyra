@@ -36,15 +36,6 @@ class AuthService {
     return { tokenData, matchedUserData };
   }
 
-  public async logout(userData: User): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
-
-    const matchedUserData: User = await this.users.findFirst({ where: { email: userData.email, password: userData.password } });
-    if (!matchedUserData) throw new HttpException(409, "Provided user data does not match any account.");
-
-    return matchedUserData;
-  }
-
   public createToken(user: User): TokenData {
     const dataStoredInToken: DataStoredInToken = { id: user.id };
     const secretKey: string = SECRET_KEY;

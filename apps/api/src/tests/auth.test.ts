@@ -55,27 +55,4 @@ describe('Testing Auth', () => {
         .expect('Set-Cookie', /^Authorization=.+/);
     });
   });
-
-  // describe('[POST] /logout', () => {
-  //   it('logout Set-Cookie Authorization=; Max-age=0', async () => {
-  //     const user: User = {
-  //       id: 1,
-  //       email: 'test@email.com',
-  //       password: 'q1w2e3r4',
-  //     };
-
-  //     const authRoute = new AuthRoute();
-  //     const users = authRoute.authController.authService.users;
-
-  //     users.findFirst = jest.fn().mockReturnValue({
-  //       ...user,
-  //       password: await bcrypt.hash(user.password, 10),
-  //     });
-
-  //     const app = new App([authRoute]);
-  //     return request(app.getServer())
-  //       .post(`${authRoute.path}logout`)
-  //       .expect('Set-Cookie', /^Authorization=\;/);
-  //   });
-  // });
 });

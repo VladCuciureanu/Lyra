@@ -41,19 +41,6 @@ paths:
         '500':
           description: Server Error
           content: {}
-  /logout:
-    post:
-      tags:
-        - auth
-      name: 'Log Out'
-      summary: Log Out User
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-        '500':
-          description: Server Error
   /signup:
     post:
       tags:
