@@ -1,17 +1,242 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+/// Models
+// TODO(Vlad): Created and updated by User tables
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+model User {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email       String   @unique
+  password    String
+  displayName String?
+  firstName   String?
+  lastName    String?
+  avatar      String?
+  role        UserRole @default(USER) // TODO(Vlad): Expand to an entire many-to-many table
+  bio         String?
+  verified    Boolean  @default(false)
+
+  playlists     UsersOnPlaylists[]
+  likedSongs    LikedSongs[]
+  followedUsers UsersOnUsers[]     @relation(name: "FollowedUsers")
+  followers     UsersOnUsers[]     @relation(name: "Followers")
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
 }
+
+model Album {
+  id            String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idMusicBrainz String?
+  title         String
+  releaseDate   DateTime
+  recordType    RecordType
+  artwork       String?
+
+  artists ArtistsOnAlbums[]
+  songs   SongsOnAlbums[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+}
+
+model Artist {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idMusicBrainz String?
+  name          String
+  avatar        String?
+
+  albums ArtistsOnAlbums[]
+  songs  ArtistsOnSongs[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+}
+
+model Genre {
+  id   String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name String
+
+  songs GenresOnSongs[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+}
+
+model Playlist {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title         String
+  artwork       String?
+  collaborative Boolean @default(false)
+
+  songs SongsOnPlaylists[]
+  users UsersOnPlaylists[]
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+}
+
+model Song {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idMusicBrainz String?
+  title         String
+  filePath      String
+
+  albums    SongsOnAlbums[]
+  artists   ArtistsOnSongs[]
+  genres    GenresOnSongs[]
+  playlists SongsOnPlaylists[]
+
+  likingUsers LikedSongs[] @ignore
+
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+}
+
+// Relational Tables
+
+model UsersOnUsers {
+  followingUser   User   @relation(name: "FollowedUsers", fields: [followingUserId], references: [id])
+  followingUserId String @db.Uuid
+  followedUser    User   @relation(name: "Followers", fields: [followedUserId], references: [id])
+  followedUserId  String @db.Uuid
+
+  @@id([followingUserId, followedUserId])
+  @@unique([followingUserId, followedUserId])
+}
+
+model LikedSongs {
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.Uuid
+  song   Song   @relation(fields: [songId], references: [id])
+  songId String @db.Uuid
+  order  Int
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  @@id([userId, songId])
+  @@unique([userId, order])
+}
+
+model ArtistsOnAlbums {
+  artist   Artist     @relation(fields: [artistId], references: [id])
+  artistId String     @db.Uuid
+  album    Album      @relation(fields: [albumId], references: [id])
+  albumId  String     @db.Uuid
+  order    Int
+  role     ArtistRole
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  @@id([artistId, albumId])
+  @@unique([albumId, order])
+}
+
+model ArtistsOnSongs {
+  artist   Artist     @relation(fields: [artistId], references: [id])
+  artistId String     @db.Uuid
+  song     Song       @relation(fields: [songId], references: [id])
+  songId   String     @db.Uuid
+  order    Int
+  role     ArtistRole
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  @@id([artistId, songId])
+  @@unique([songId, order])
+}
+
+model GenresOnSongs {
+  genre   Genre  @relation(fields: [genreId], references: [id])
+  genreId String @db.Uuid
+  song    Song   @relation(fields: [songId], references: [id])
+  songId  String @db.Uuid
+  order   Int
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  @@id([genreId, songId])
+  @@unique([songId, order])
+}
+
+model SongsOnAlbums {
+  song    Song   @relation(fields: [songId], references: [id])
+  songId  String @db.Uuid
+  album   Album  @relation(fields: [albumId], references: [id])
+  albumId String @db.Uuid
+  order   Int
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  // Note(Vlad): Songs can be multiple times on the same album, therefore no composite ID
+  @@unique([albumId, order])
+}
+
+model SongsOnPlaylists {
+  song       Song     @relation(fields: [songId], references: [id])
+  songId     String   @db.Uuid
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+  playlistId String   @db.Uuid
+  order      Int
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  @@id([songId, playlistId])
+  @@unique([playlistId, order])
+}
+
+model UsersOnPlaylists {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @db.Uuid
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+  playlistId String   @db.Uuid
+  isCreator  Boolean
+
+  assignedAt DateTime @default(now())
+  assignedBy String?  @db.Uuid
+
+  @@id([userId, playlistId])
+  @@unique([playlistId, isCreator])
+}
+
+// Enums
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum RecordType {
+  ALBUM
+  EP
+  SINGLE
+  COMPILATION
+}
+
+enum ArtistRole {
+  ARTIST
+  ARRANGER
+  COMPOSER
+  CONDUCTOR
+  DJMIXER
+  ENGINEER
+  LYRICIST
+  MIXER
+  PRODUCER
+  REMIXER
+  PERFORMER
+}
+
+// Misc
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }

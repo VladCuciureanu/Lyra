@@ -10,8 +10,8 @@ import { isEmpty } from '@utils/util';
 class AuthService {
   public users = new PrismaClient().user;
 
-  public async login(userData: UserDto): Promise<TokenData> {
-    if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
+  public async requestToken(userData: UserDto): Promise<TokenData> {
+    if (isEmpty(userData)) throw new HttpException(400, 'No user data was provided.');
 
     const matchedUserData: User = await this.users.findUnique({ where: { email: userData.email } });
     if (!matchedUserData) throw new HttpException(409, `Provided email ${userData.email} does not match any account.`);

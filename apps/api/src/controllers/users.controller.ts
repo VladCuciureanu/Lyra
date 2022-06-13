@@ -1,16 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
-import { User } from '@prisma/client';
-import { UserDto } from '@dtos/users.dto';
-import userService from '@services/users.service';
+import { User, UserRole } from '@prisma/client';
+import { CreateUserDto, UpdateUserDto, UserResponse } from '@dtos/users.dto';
+import UserService from '@services/users.service';
+import { instanceToPlain, plainToClass } from 'class-transformer';
+import { StatusCodes } from 'http-status-codes';
+import { RequestWithUser } from '@/interfaces/auth.interface';
 
 class UsersController {
-  public userService = new userService();
+  public userService = new UserService();
 
   public getUsers = async (_: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const findAllUsersData: User[] = await this.userService.findAllUser();
+      const allUsersData: User[] = await this.userService.findAllUser();
+      const response: UserResponse[] = allUsersData.map(user => plainToClass(UserResponse, user));
 
-      res.status(200).json(findAllUsersData);
+      res.status(StatusCodes.OK).json(instanceToPlain(response));
     } catch (error) {
       next(error);
     }
@@ -18,10 +22,12 @@ class UsersController {
 
   public getUserById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const userId = Number(req.params.id);
-      const findOneUserData: User = await this.userService.findUserById(userId);
+      const userId = req.params.id;
 
-      res.status(200).json(findOneUserData);
+      const matchedUserData: User = await this.userService.findUserById(userId);
+      const response: UserResponse = plainToClass(UserResponse, matchedUserData);
+
+      res.status(StatusCodes.OK).json(response);
     } catch (error) {
       next(error);
     }
@@ -29,33 +35,39 @@ class UsersController {
 
   public createUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const userData: UserDto = req.body;
-      const createUserData: User = await this.userService.createUser(userData);
+      const userData: CreateUserDto = req.body;
 
-      res.status(201).json(createUserData);
+      const createdUserData: User = await this.userService.createUser(userData);
+      const response: UserResponse = plainToClass(UserResponse, createdUserData);
+
+      res.status(StatusCodes.OK).json(response);
     } catch (error) {
       next(error);
     }
   };
 
-  public updateUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  public updateUser = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const userId = Number(req.params.id);
-      const userData: UserDto = req.body;
-      const updateUserData: User = await this.userService.updateUser(userId, userData);
+      const userId = req.params.id;
+      const userData: UpdateUserDto = req.body;
 
-      res.status(200).json(updateUserData);
+      const updatedUserData: User = await this.userService.updateUser(userId, userData);
+      const response: UserResponse = plainToClass(UserResponse, updatedUserData);
+
+      res.status(StatusCodes.OK).json(response);
     } catch (error) {
       next(error);
     }
   };
 
-  public deleteUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  public deleteUser = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const userId = Number(req.params.id);
-      const deleteUserData: User = await this.userService.deleteUser(userId);
+      const userId = req.params.id;
 
-      res.status(200).json(deleteUserData);
+      const deletedUserData: User = await this.userService.deleteUser(userId);
+      const response: UserResponse = plainToClass(UserResponse, deletedUserData);
+
+      res.status(StatusCodes.OK).json(response);
     } catch (error) {
       next(error);
     }

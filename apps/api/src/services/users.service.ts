@@ -1,6 +1,6 @@
 import { hash } from 'bcrypt';
 import { PrismaClient, User } from '@prisma/client';
-import { UserDto } from '@dtos/users.dto';
+import { CreateUserDto, UpdateUserDto } from '@dtos/users.dto';
 import { HttpException } from '@exceptions/HttpException';
 import { isEmpty } from '@utils/util';
 
@@ -12,8 +12,8 @@ class UserService {
     return allUser;
   }
 
-  public async findUserById(userId: number): Promise<User> {
-    if (isEmpty(userId)) throw new HttpException(400, "No user ID was provided.");
+  public async findUserById(userId: string): Promise<User> {
+    if (isEmpty(userId)) throw new HttpException(400, 'No user ID was provided.');
 
     const matchedUserData: User = await this.users.findUnique({ where: { id: userId } });
     if (!matchedUserData) throw new HttpException(409, "Couldn't find a user with given ID.");
@@ -21,8 +21,8 @@ class UserService {
     return matchedUserData;
   }
 
-  public async createUser(userData: UserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
+  public async createUser(userData: CreateUserDto): Promise<User> {
+    if (isEmpty(userData)) throw new HttpException(400, 'No user data was provided.');
 
     const matchedUserData: User = await this.users.findUnique({ where: { email: userData.email } });
     if (matchedUserData) throw new HttpException(409, `Provided email ${userData.email} is already in use by another account.`);
@@ -32,22 +32,26 @@ class UserService {
     return createUserData;
   }
 
-  public async updateUser(userId: number, userData: UserDto): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "No user data was provided.");
+  public async updateUser(userId: string, userData: UpdateUserDto): Promise<User> {
+    if (isEmpty(userData)) throw new HttpException(400, 'No user data was provided.');
 
     const matchedUserData: User = await this.users.findUnique({ where: { id: userId } });
-    if (!matchedUserData) throw new HttpException(409, "Provided user ID does not match any account.");
+    if (!matchedUserData) throw new HttpException(409, 'Provided user ID does not match any account.');
 
-    const hashedPassword = await hash(userData.password, 10);
-    const updateUserData = await this.users.update({ where: { id: userId }, data: { ...userData, password: hashedPassword } });
+    if (userData.password) {
+      const hashedPassword = await hash(userData.password, 10);
+      userData.password = hashedPassword;
+    }
+
+    const updateUserData = await this.users.update({ where: { id: userId }, data: { ...userData } });
     return updateUserData;
   }
 
-  public async deleteUser(userId: number): Promise<User> {
-    if (isEmpty(userId)) throw new HttpException(400, "No user ID was provided.");
+  public async deleteUser(userId: string): Promise<User> {
+    if (isEmpty(userId)) throw new HttpException(400, 'No user ID was provided.');
 
     const matchedUserData: User = await this.users.findUnique({ where: { id: userId } });
-    if (!matchedUserData) throw new HttpException(409, "Provided user ID does not match any account.");
+    if (!matchedUserData) throw new HttpException(409, 'Provided user ID does not match any account.');
 
     const deleteUserData = await this.users.delete({ where: { id: userId } });
     return deleteUserData;

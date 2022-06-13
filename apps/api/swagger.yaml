@@ -14,7 +14,7 @@ tags:
   - name: users
     description: Users Endpoints
 paths:
-  /login:
+  /token:
     post:
       tags:
         - auth
@@ -41,37 +41,6 @@ paths:
         '500':
           description: Server Error
           content: {}
-  /signup:
-    post:
-      tags:
-        - auth
-      name: 'Sign Up'
-      produces:
-        - application/json
-      consumes:
-        - application/json
-      summary: Create User
-      requestBody:
-        description: Account Data
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/users'
-        required: true
-      responses:
-        '201':
-          description: Created
-          content: {}
-        '400':
-          description: Bad Request
-          content: {}
-        '409':
-          description: Conflict
-          content: {}
-        '500':
-          description: Server Error
-          content: {}
-      x-codegen-request-body-name: body
   /users:
     get:
       tags:
@@ -95,7 +64,7 @@ paths:
         - application/json
       consumes:
         - application/json
-      summary: Add User
+      summary: Register New User
       requestBody:
         description: User Data
         content:
@@ -132,7 +101,7 @@ paths:
           description: User Id
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: OK
@@ -143,7 +112,7 @@ paths:
         '500':
           description: Server Error
           content: {}
-    put:
+    patch:
       tags:
         - users
       produces:
@@ -157,7 +126,7 @@ paths:
           description: User Id
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         description: User Data
         content:
@@ -189,7 +158,69 @@ paths:
           description: User Id
           required: true
           schema:
-            type: integer
+            type: string
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+  /users/@me:
+    get:
+      tags:
+        - users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Get Current User
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+    patch:
+      tags:
+        - users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      summary: Update Current User
+      requestBody:
+        description: User Data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content: {}
+        '400':
+          description: Bad Request
+          content: {}
+        '409':
+          description: Conflict
+          content: {}
+        '500':
+          description: Server Error
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - users
+      summary: Delete Current User
       responses:
         '200':
           description: OK

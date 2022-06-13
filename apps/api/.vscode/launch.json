@@ -1,35 +1,35 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node-terminal",
-            "request": "launch",
-            "name": "Dev Lyra Api",
-            "command": "npm run dev"
-        },
-        {
-            "type": "node-terminal",
-            "request": "launch",
-            "name": "Start Lyra Api",
-            "command": "npm run start"
-        },
-        {
-            "type": "node-terminal",
-            "request": "launch",
-            "name": "Test Lyra Api",
-            "command": "npm run test"
-        },
-        {
-            "type": "node-terminal",
-            "request": "launch",
-            "name": "Lint Lyra Api",
-            "command": "npm run lint"
-        },
-        {
-            "type": "node-terminal",
-            "request": "launch",
-            "name": "Lint:Fix Lyra Api",
-            "command": "npm run lint:fix"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Dev Lyra Api",
+      "command": "npm run dev"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Start Lyra Api",
+      "command": "npm run start"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Test Lyra Api",
+      "command": "npm run test"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Lint Lyra Api",
+      "command": "npm run lint"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Lint:Fix Lyra Api",
+      "command": "npm run lint:fix"
+    }
+  ]
 }

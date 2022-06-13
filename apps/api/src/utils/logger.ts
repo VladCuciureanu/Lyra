@@ -13,6 +13,15 @@ if (!existsSync(logDir)) {
 
 // Define log format
 const logFormat = winston.format.printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`);
+const errorStackFormat = winston.format(info => {
+  if (info instanceof Error) {
+    return Object.assign({}, info, {
+      stack: info.stack,
+      message: info.message,
+    });
+  }
+  return info;
+});
 
 /*
  * Log Level
@@ -24,6 +33,7 @@ const logger = winston.createLogger({
       format: 'YYYY-MM-DD HH:mm:ss',
     }),
     logFormat,
+    errorStackFormat(),
   ),
   transports: [
     // debug log setting
