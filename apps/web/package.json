@@ -1,0 +1,21 @@
+{
+  "name": "@lyra/web",
+  "version": "0.1.0",
+  "description": "The first-party web client for Lyra.",
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "vlad.cuciureanu@pm.me"
+  },
+  "license": "GPL-3.0-only",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VladCuciureanu/Lyra.git",
+    "directory": "apps/web"
+  },
+  "private": true
+}

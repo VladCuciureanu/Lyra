@@ -1,0 +1,21 @@
+{
+  "name": "@lyra/api",
+  "version": "0.1.0",
+  "description": "The API behind Lyra, the self-hosted music streaming service.",
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "vlad.cuciureanu@pm.me"
+  },
+  "license": "GPL-3.0-only",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VladCuciureanu/Lyra.git",
+    "directory": "apps/api"
+  },
+  "private": true
+}
