@@ -1,13 +1,35 @@
 {
-  "name": "lyra",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {},
-  "private": true,
+  "name": "@lyra/monorepo",
+  "version": "0.0.0-monorepo",
+  "description": "Self-hosted music streaming service that allows you to take your high-fidelity music collection anywhere.",
+  "author": {
+    "name": "Vlad Cuciureanu",
+    "email": "vlad.cuciureanu@pm.me"
+  },
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "nx run-many --target=build --all",
+    "dev": "nx run-many --target=dev --all",
+    "test": "nx run-many --target=test --all",
+    "format": "nx run-many --target=format --all"
+  },
   "dependencies": {},
   "devDependencies": {
     "@nrwl/nx-cloud": "latest",
     "nx": "15.7.2",
     "prettier": "^2.6.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VladCuciureanu/Lyra.git"
+  },
+  "private": true,
+  "keywords": [
+    "music",
+    "streaming",
+    "music-library",
+    "self-hosted",
+    "streaming-services",
+    "streaming-audio"
+  ]
 }
