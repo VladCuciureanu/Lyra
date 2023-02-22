@@ -1,0 +1,37 @@
+// Models
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+// Boilerplate
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider              = "zod-prisma"
+  output                = "../lib/zod"
+  relationModel         = true
+  modelCase             = "PascalCase"
+  modelSuffix           = "Schema"
+  useDecimalJs          = true
+  prismaJsonNullability = true
+  // imports                  = null
+}
