@@ -8,8 +8,32 @@ importers:
       nx: 15.7.2
       prettier: ^2.6.2
     devDependencies:
-      '@nrwl/nx-cloud': 15.0.3
+      '@nrwl/nx-cloud': 15.1.0
       nx: 15.7.2
+      prettier: 2.8.4
+
+  apps/api:
+    specifiers:
+      '@lyra/tsconfig': workspace:*
+      '@types/node': ^18.14.0
+      prettier: ^2.6.2
+      typescript: ^4.9.5
+    devDependencies:
+      '@lyra/tsconfig': link:../../packages/tsconfig
+      '@types/node': 18.14.0
+      prettier: 2.8.4
+      typescript: 4.9.5
+
+  apps/web:
+    specifiers:
+      prettier: ^2.6.2
+    devDependencies:
+      prettier: 2.8.4
+
+  packages/tsconfig:
+    specifiers:
+      prettier: ^2.6.2
+    devDependencies:
       prettier: 2.8.4
 
 packages:
@@ -45,8 +69,8 @@ packages:
       - debug
     dev: true
 
-  /@nrwl/nx-cloud/15.0.3:
-    resolution: {integrity: sha512-KvwM8/IbCOlbWIzi+Tm14tJkEdQK3ruN6TPUmeKnkeFZsJyoFw4GCyKJMOLs8y4MQokHgskg3nbF822JLR9xJg==}
+  /@nrwl/nx-cloud/15.1.0:
+    resolution: {integrity: sha512-QcMlPZ+DBzTWcoWSziyrENYhBLfE5MSns3M5qJB8EClg9/vomepA+NLOLWB+/O0sfdeBGFKlvFyrjf+CnVaB2A==}
     hasBin: true
     dependencies:
       axios: 0.21.4
@@ -160,6 +184,10 @@ packages:
     dependencies:
       node-addon-api: 3.2.1
       node-gyp-build: 4.6.0
+    dev: true
+
+  /@types/node/18.14.0:
+    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
     dev: true
 
   /@yarnpkg/lockfile/1.1.0:
@@ -966,6 +994,12 @@ packages:
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: true
+
+  /typescript/4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /universalify/2.0.0:
