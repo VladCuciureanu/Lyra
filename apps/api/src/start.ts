@@ -4,6 +4,7 @@ import logger from './logger';
 import env from './env';
 
 export async function startServer(): Promise<void> {
+  logger.info('🥱 Booting up Lyra...');
   const server = await createServer();
 
   const host = env.HOST;

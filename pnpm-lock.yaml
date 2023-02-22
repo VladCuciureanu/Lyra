@@ -21,6 +21,7 @@ importers:
       '@types/node': ^18.14.0
       '@types/qs': ^6.9.7
       concurrently: ^7.6.0
+      dotenv: ^16.0.3
       express: ^4.18.2
       lodash: ^4.17.21
       prettier: ^2.6.2
@@ -28,6 +29,7 @@ importers:
       typescript: ^4.9.5
     dependencies:
       '@godaddy/terminus': 4.11.2
+      dotenv: 16.0.3
       express: 4.18.2
       lodash: 4.17.21
       qs: 6.11.0
@@ -564,6 +566,11 @@ packages:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /duplexer/0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
