@@ -1,6 +1,7 @@
 import { database } from '@lyra/schema';
 import { CreateUserRequestDTO, UpdateUserRequestDTO } from '../types/users';
 import argon2 from 'argon2';
+import { NotFoundException } from '../exceptions/not-found';
 
 async function getUsers() {
   return database.user.findMany({ select: { ...selectOptions, email: false } });
@@ -16,13 +17,25 @@ async function createUser(dto: CreateUserRequestDTO) {
 }
 
 async function getUser(id: string, bypassPrivacy: boolean) {
-  return database.user.findFirst({
+  const user = await database.user.findFirst({
     where: { id: id },
     select: { ...selectOptions, email: bypassPrivacy },
   });
+
+  if (!user) {
+    throw new NotFoundException();
+  }
+
+  return user;
 }
 
 async function updateUser(id: string, dto: UpdateUserRequestDTO) {
+  const user = await database.user.findFirst({ where: { id: id } });
+
+  if (!user) {
+    throw new NotFoundException();
+  }
+
   if (dto.password) {
     dto.password = await argon2.hash(dto.password);
   }
@@ -35,6 +48,12 @@ async function updateUser(id: string, dto: UpdateUserRequestDTO) {
 }
 
 async function deleteUser(id: string) {
+  const user = await database.user.findFirst({ where: { id: id } });
+
+  if (!user) {
+    throw new NotFoundException();
+  }
+
   return database.user.delete({
     where: { id: id },
     select: selectOptions,
