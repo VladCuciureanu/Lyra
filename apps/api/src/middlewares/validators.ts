@@ -8,6 +8,10 @@ import {
   CreateAlbumRequestSchema,
   UpdateAlbumRequestSchema,
 } from '../types/albums';
+import {
+  CreateArtistRequestSchema,
+  UpdateArtistRequestSchema,
+} from '../types/artists';
 
 // Auth
 export const validateLogin = validate(BearerTokenRequestSchema);
@@ -19,3 +23,7 @@ export const validateUpdateUser = validate(UpdateUserRequestSchema);
 // Albums
 export const validateCreateAlbum = validate(CreateAlbumRequestSchema);
 export const validateUpdateAlbum = validate(UpdateAlbumRequestSchema);
+
+// Artists
+export const validateCreateArtist = validate(CreateArtistRequestSchema);
+export const validateUpdateArtist = validate(UpdateArtistRequestSchema);

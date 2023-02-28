@@ -3,6 +3,7 @@ import env from './env';
 import cors from './middlewares/cors';
 import { routeNotFound } from './middlewares/route-not-found';
 import albumsRouter from './routes/albums';
+import artistsRouter from './routes/artists';
 import authRouter from './routes/auth';
 import usersRouter from './routes/users';
 
@@ -28,6 +29,8 @@ export default async function createApp(): Promise<Application> {
   app.use(`${basePath}/auth`, authRouter);
   app.use(`${basePath}/users`, usersRouter);
   app.use(`${basePath}/albums`, albumsRouter);
+  app.use(`${basePath}/artists`, artistsRouter);
+  // TODO: Rest of entities (tracks and playlists)
 
   app.get('/robots.txt', (_, res) => {
     res.set('Content-Type', 'text/plain');
