@@ -11,7 +11,7 @@
     "build": "prisma generate && tsc",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
-    "format": "prettier --write \"*.{ts,tsx,prisma}\" --no-error-on-unmatched-pattern"
+    "format": "prettier --write \"**/*.{ts,tsx}\" --no-error-on-unmatched-pattern"
   },
   "dependencies": {
     "@prisma/client": "^4.10.1",

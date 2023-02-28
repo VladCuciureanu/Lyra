@@ -1,13 +1,72 @@
 // Models
 
+model Artist {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now())
+
+  name  String
+  image String?
+
+  albums    Album[]
+  followers User[]
+}
+
+model Album {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now())
+
+  name  String
+  image String?
+
+  artist   Artist  @relation(fields: [artistId], references: [id])
+  artistId String
+  tracks   Track[]
+}
+
+model Playlist {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now())
+
+  name          String
+  image         String?
+  private       Boolean @default(true)
+  collaborative Boolean @default(false)
+
+  members User[]
+  tracks  Track[]
+}
+
+model Track {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now())
+
+  name String
+
+  album     Album      @relation(fields: [albumId], references: [id])
+  albumId   String
+  playlists Playlist[]
+  likedBy   User[]
+}
+
 model User {
-  id        String     @id @default(uuid())
-  createdAt DateTime   @default(now())
-  email     String     @unique
-  name      String?
-  password  String
-  role      UserRole   @default(USER)
-  status    UserStatus @default(INVITED)
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now())
+
+  email    String     @unique
+  name     String?
+  password String
+  image    String?
+  role     UserRole   @default(USER)
+  status   UserStatus @default(INVITED)
+
+  playlists       Playlist[]
+  followedArtists Artist[]
+  likedTracks     Track[]
 }
 
 enum UserRole {
