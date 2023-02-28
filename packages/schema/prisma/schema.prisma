@@ -1,17 +1,25 @@
 // Models
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
+  id        String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  email     String     @unique
   name      String?
-  role      Role     @default(USER)
+  password  String
+  role      UserRole   @default(USER)
+  status    UserStatus @default(INVITED)
 }
 
-enum Role {
+enum UserRole {
   USER
   MODERATOR
   ADMIN
+}
+
+enum UserStatus {
+  INVITED
+  ACTIVE
+  INACTIVE
 }
 
 // Boilerplate

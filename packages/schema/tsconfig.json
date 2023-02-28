@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@lyra/tsconfig/node18.json",
+  "extends": "./node_modules/@lyra/tsconfig/lib.json",
   "compilerOptions": {
     "outDir": "dist"
   },

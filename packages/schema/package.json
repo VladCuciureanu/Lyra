@@ -29,5 +29,7 @@
     "url": "https://github.com/VladCuciureanu/Lyra.git",
     "directory": "apps/schema"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "private": true
 }

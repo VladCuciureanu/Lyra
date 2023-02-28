@@ -1,10 +1,12 @@
 import * as z from "zod"
-import { Role } from "@prisma/client"
+import { UserRole, UserStatus } from "@prisma/client"
 
 export const UserSchema = z.object({
-  id: z.number().int(),
+  id: z.string(),
   createdAt: z.date(),
   email: z.string(),
   name: z.string().nullish(),
-  role: z.nativeEnum(Role),
+  password: z.string(),
+  role: z.nativeEnum(UserRole),
+  status: z.nativeEnum(UserStatus),
 })

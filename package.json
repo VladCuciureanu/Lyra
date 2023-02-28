@@ -11,7 +11,9 @@
     "build": "nx run-many --target=build --all",
     "dev": "nx run-many --target=dev --all",
     "test": "nx run-many --target=test --all",
-    "format": "nx run-many --target=format --all"
+    "format": "nx run-many --target=format --all",
+    "prisma:generate": "nx run @lyra/schema:prisma:generate",
+    "prisma:push": "nx run @lyra/schema:prisma:push"
   },
   "dependencies": {},
   "devDependencies": {
