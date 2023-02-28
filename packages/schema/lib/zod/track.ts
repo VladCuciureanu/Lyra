@@ -13,6 +13,7 @@ export const TrackSchema = z.object({
   createdAt: z.date(),
   modifiedAt: z.date(),
   name: z.string(),
+  uri: z.string(),
   albumId: z.string(),
 });
 

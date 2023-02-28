@@ -45,6 +45,7 @@ model Track {
   modifiedAt DateTime @default(now())
 
   name String
+  uri  String
 
   album     Album      @relation(fields: [albumId], references: [id])
   albumId   String
