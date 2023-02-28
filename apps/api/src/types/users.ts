@@ -1,7 +1,5 @@
 import { UserSchema } from '@lyra/schema';
 
-const BaseUserSchema = UserSchema.pick({ id: true });
-
 export const CreateUserRequestSchema = UserSchema.pick({
   email: true,
   name: true,
@@ -14,7 +12,6 @@ export const UpdateUserRequestSchema = UserSchema.pick({
   password: true,
 })
   .partial()
-  .extend(BaseUserSchema.shape)
   .strict();
 
 export type CreateUserRequestDTO = Zod.infer<typeof CreateUserRequestSchema>;
