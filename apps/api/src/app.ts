@@ -2,6 +2,7 @@ import express, { Application, json } from 'express';
 import env from './env';
 import cors from './middlewares/cors';
 import { routeNotFound } from './middlewares/route-not-found';
+import albumsRouter from './routes/albums';
 import authRouter from './routes/auth';
 import usersRouter from './routes/users';
 
@@ -26,6 +27,7 @@ export default async function createApp(): Promise<Application> {
 
   app.use(`${basePath}/auth`, authRouter);
   app.use(`${basePath}/users`, usersRouter);
+  app.use(`${basePath}/albums`, albumsRouter);
 
   app.get('/robots.txt', (_, res) => {
     res.set('Content-Type', 'text/plain');
