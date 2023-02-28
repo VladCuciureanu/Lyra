@@ -17,10 +17,6 @@ export const UpdateUserRequestSchema = UserSchema.pick({
   .extend(BaseUserSchema.shape)
   .strict();
 
-export const DeleteUserRequestSchema = UserSchema.pick({ id: true }).strict();
-
 export type CreateUserRequestDTO = Zod.infer<typeof CreateUserRequestSchema>;
 
 export type UpdateUserRequestDTO = Zod.infer<typeof UpdateUserRequestSchema>;
-
-export type DeleteUserRequestDTO = Zod.infer<typeof DeleteUserRequestSchema>;

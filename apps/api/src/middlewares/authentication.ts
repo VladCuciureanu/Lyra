@@ -1,7 +1,9 @@
+import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import { InvalidTokenException } from '../exceptions/invalid-token';
+import { TokenExpiredException } from '../exceptions/token-expired';
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import env from '../env';
 import { JWTPayload } from '../types/auth';
+import env from '../env';
 
 export const authenticate = async (
   req: Request,
@@ -14,9 +16,12 @@ export const authenticate = async (
     res.locals.user = payload.context.user;
     next();
   } catch (error) {
-    return res.status(400).json({
-      status: 'Invalid or expired JWT token.',
-      error: error,
-    });
+    if (error instanceof TokenExpiredError) {
+      next(new TokenExpiredException(error.message));
+    }
+    if (error instanceof JsonWebTokenError) {
+      next(new InvalidTokenException(error.message));
+    }
+    next(error);
   }
 };

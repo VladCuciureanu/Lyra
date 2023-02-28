@@ -1,17 +1,13 @@
-import { Router } from 'express';
+import { RequestHandler } from 'express';
 import asyncHandler from 'express-async-handler';
-import { validate } from '../middlewares/schema-validation';
-import { login } from '../services/auth';
-import { BearerTokenRequestSchema } from '../types/auth';
+import authService from '../services/auth';
 
-const authRouter = Router();
+const login: RequestHandler = asyncHandler(async (req, res, next) => {
+  res.send(await authService.login(req.body));
+});
 
-authRouter.get(
-  '/token',
-  validate(BearerTokenRequestSchema),
-  asyncHandler(async (req, res, next) => {
-    res.send(await login(req.body));
-  })
-);
+const authController = {
+  login,
+};
 
-export default authRouter;
+export default authController;

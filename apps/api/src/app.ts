@@ -1,6 +1,8 @@
 import express, { Application, json } from 'express';
-import authRouter from './controllers/auth';
-import usersRouter from './controllers/users';
+import { RouteNotFoundException } from './exceptions/route-not-found';
+import { undefinedRouteHandler } from './middlewares/route-not-found';
+import authRouter from './routes/auth';
+import usersRouter from './routes/users';
 
 export default async function createApp(): Promise<Application> {
   const version = 1;
@@ -21,6 +23,8 @@ export default async function createApp(): Promise<Application> {
   app.get('/server/ping', (_req, res) => res.send('🏓 Pong!'));
 
   // TODO: app use logger
+
+  app.use(undefinedRouteHandler);
 
   return app;
 }
