@@ -1,10 +1,13 @@
 import express, { Application, json } from 'express';
-import { RouteNotFoundException } from './exceptions/route-not-found';
-import { undefinedRouteHandler } from './middlewares/route-not-found';
+import env from './env';
+import cors from './middlewares/cors';
+import { routeNotFound } from './middlewares/route-not-found';
 import authRouter from './routes/auth';
 import usersRouter from './routes/users';
 
 export default async function createApp(): Promise<Application> {
+  // TODO: Validate env
+
   const version = 1;
   const basePath = `/api/v${version}`;
 
@@ -17,14 +20,22 @@ export default async function createApp(): Promise<Application> {
     next();
   });
 
+  if (env.CORS_ENABLED === true) {
+    app.use(cors);
+  }
+
   app.use(`${basePath}/auth`, authRouter);
   app.use(`${basePath}/users`, usersRouter);
 
-  app.get('/server/ping', (_req, res) => res.send('🏓 Pong!'));
+  app.get('/robots.txt', (_, res) => {
+    res.set('Content-Type', 'text/plain');
+    res.status(200);
+    res.send(env.ROBOTS_TXT);
+  });
 
-  // TODO: app use logger
+  app.use(routeNotFound);
 
-  app.use(undefinedRouteHandler);
+  // TODO: app.use(errorHandler)
 
   return app;
 }
