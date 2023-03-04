@@ -10,7 +10,12 @@ export const PlaylistSchema = z.object({
   id: z.string(),
   createdAt: z.date(),
   modifiedAt: z.date(),
-  name: z.string(),
+  name: z
+    .string()
+    .min(1, { message: "A playlist's name must be longer than 0 characters" })
+    .max(127, {
+      message: "A playlist's name must be shorter than 128 characters",
+    }),
   image: z.string().nullish(),
   private: z.boolean(),
   collaborative: z.boolean(),

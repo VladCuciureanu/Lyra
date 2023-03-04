@@ -5,6 +5,8 @@ model Artist {
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
+  /// @zod.min(1, { message: "An artist's name must be longer than 0 characters" })
+  /// @zod.max(127, { message: "An artist's name must be shorter than 128 characters" })
   name  String
   image String?
 
@@ -17,6 +19,8 @@ model Album {
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
+  /// @zod.min(1, { message: "An album's name must be longer than 0 characters" })
+  /// @zod.max(255, { message: "An album's name must be shorter than 256 characters" })
   name  String
   image String?
 
@@ -30,6 +34,8 @@ model Playlist {
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
+  /// @zod.min(1, { message: "A playlist's name must be longer than 0 characters" })
+  /// @zod.max(127, { message: "A playlist's name must be shorter than 128 characters" })
   name          String
   image         String?
   private       Boolean @default(true)
@@ -44,6 +50,8 @@ model Track {
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
+  /// @zod.min(1, { message: "A track's name must be longer than 0 characters" })
+  /// @zod.max(127, { message: "A track's name must be shorter than 128 characters" })
   name String
   uri  String
 
@@ -58,7 +66,10 @@ model User {
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
+  /// @zod.email({ message: "Invalid email address" })
   email    String     @unique
+  /// @zod.min(4, { message: "A user's name must be longer than 3 characters" })
+  /// @zod.max(127, { message: "A user's name must be shorter than 128 characters" })
   name     String?
   password String
   image    String?

@@ -13,8 +13,12 @@ export const UserSchema = z.object({
   id: z.string(),
   createdAt: z.date(),
   modifiedAt: z.date(),
-  email: z.string(),
-  name: z.string().nullish(),
+  email: z.string().email({ message: 'Invalid email address' }),
+  name: z
+    .string()
+    .min(4, { message: "A user's name must be longer than 3 characters" })
+    .max(127, { message: "A user's name must be shorter than 128 characters" })
+    .nullish(),
   password: z.string(),
   image: z.string().nullish(),
   role: z.nativeEnum(UserRole),
