@@ -1,7 +1,7 @@
 {
-  "name": "@lyra/api",
+  "name": "@lyra/core",
   "version": "0.1.0",
-  "description": "The API behind Lyra, the self-hosted music streaming service.",
+  "description": "The core behind Lyra, the self-hosted music streaming service.",
   "author": {
     "name": "Vlad Cuciureanu",
     "email": "vlad.cuciureanu@pm.me"
