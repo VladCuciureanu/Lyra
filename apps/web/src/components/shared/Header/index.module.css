@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  padding-right: 1.5rem;
+  border: 1px solid blue;
+  align-items: center;
+  justify-content: space-between;
+  min-width: calc(100vw - var(--sidebar-width));
+  min-height: var(--header-height);
+}

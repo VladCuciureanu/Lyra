@@ -1,0 +1,5 @@
+.container {
+  min-width: var(--sidebar-width);
+  min-height: 100vh;
+  background-color: red;
+}
