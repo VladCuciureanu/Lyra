@@ -16,6 +16,10 @@ import {
   CreateTrackRequestSchema,
   UpdateTrackRequestSchema,
 } from '../types/tracks';
+import {
+  CreatePlaylistRequestSchema,
+  UpdatePlaylistRequestSchema,
+} from '../types/playlists';
 
 // Auth
 export const validateLogin = validate(BearerTokenRequestSchema);
@@ -35,3 +39,7 @@ export const validateUpdateArtist = validate(UpdateArtistRequestSchema);
 // Tracks
 export const validateCreateTrack = validate(CreateTrackRequestSchema);
 export const validateUpdateTrack = validate(UpdateTrackRequestSchema);
+
+// Playlists
+export const validateCreatePlaylist = validate(CreatePlaylistRequestSchema);
+export const validateUpdatePlaylist = validate(UpdatePlaylistRequestSchema);

@@ -5,6 +5,8 @@ import { routeNotFound } from './middlewares/route-not-found';
 import albumsRouter from './routes/albums';
 import artistsRouter from './routes/artists';
 import authRouter from './routes/auth';
+import playlistsRouter from './routes/playlists';
+import tracksRouter from './routes/tracks';
 import usersRouter from './routes/users';
 
 export default async function createApp(): Promise<Application> {
@@ -30,7 +32,8 @@ export default async function createApp(): Promise<Application> {
   app.use(`${basePath}/users`, usersRouter);
   app.use(`${basePath}/albums`, albumsRouter);
   app.use(`${basePath}/artists`, artistsRouter);
-  // TODO: Rest of entities (tracks and playlists)
+  app.use(`${basePath}/tracks`, tracksRouter);
+  app.use(`${basePath}/playlists`, playlistsRouter);
 
   app.get('/robots.txt', (_, res) => {
     res.set('Content-Type', 'text/plain');
