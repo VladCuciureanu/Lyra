@@ -3,11 +3,13 @@ import { TrackSchema } from '@lyra/schema';
 export const CreateTrackRequestSchema = TrackSchema.pick({
   name: true,
   uri: true,
+  albumId: true,
 }).strict();
 
 export const UpdateTrackRequestSchema = TrackSchema.pick({
   name: true,
   uri: true,
+  albumId: true,
 })
   .partial()
   .strict();

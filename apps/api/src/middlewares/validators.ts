@@ -12,6 +12,10 @@ import {
   CreateArtistRequestSchema,
   UpdateArtistRequestSchema,
 } from '../types/artists';
+import {
+  CreateTrackRequestSchema,
+  UpdateTrackRequestSchema,
+} from '../types/tracks';
 
 // Auth
 export const validateLogin = validate(BearerTokenRequestSchema);
@@ -27,3 +31,7 @@ export const validateUpdateAlbum = validate(UpdateAlbumRequestSchema);
 // Artists
 export const validateCreateArtist = validate(CreateArtistRequestSchema);
 export const validateUpdateArtist = validate(UpdateArtistRequestSchema);
+
+// Tracks
+export const validateCreateTrack = validate(CreateTrackRequestSchema);
+export const validateUpdateTrack = validate(UpdateTrackRequestSchema);

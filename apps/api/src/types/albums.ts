@@ -1,15 +1,15 @@
 import { AlbumSchema } from '@lyra/schema';
 
 export const CreateAlbumRequestSchema = AlbumSchema.pick({
-  artistId: true,
   name: true,
   image: true,
+  artistId: true,
 }).strict();
 
 export const UpdateAlbumRequestSchema = AlbumSchema.pick({
-  artistId: true,
   name: true,
   image: true,
+  artistId: true,
 })
   .partial()
   .strict();
