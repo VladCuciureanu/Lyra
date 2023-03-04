@@ -1,6 +1,6 @@
 export default {
   HOST: '0.0.0.0',
-  PORT: 1337,
+  PORT: 4000,
 
   JWT_SECRET: 'such-secret-much-wow',
 

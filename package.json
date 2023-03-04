@@ -9,7 +9,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "build": "nx run-many --target=build --all",
-    "dev": "nx run-many --target=dev --all",
+    "dev": "nx run-many --target=dev --all --output-style=stream",
     "test": "nx run-many --target=test --all",
     "format": "nx run-many --target=format --all",
     "prisma:generate": "nx run @lyra/schema:prisma:generate",
