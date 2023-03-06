@@ -1,7 +1,9 @@
+'use client';
+
 import PlayerContext from '@/hooks/player-context';
 import Image from 'next/image';
 import { useContext } from 'react';
-import styles from './index.module.css';
+import styles from './index.module.scss';
 import ProgressBar from './ProgressBar';
 
 export default function NowPlaying() {

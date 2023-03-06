@@ -4,7 +4,7 @@ import SpeakerIcon from '@/components/Shared/Icons/Speaker';
 import SpeakerWavesIcon from '@/components/Shared/Icons/SpeakerWaves';
 import PlayerContext from '@/hooks/player-context';
 import { useContext } from 'react';
-import styles from './index.module.css';
+import styles from './index.module.scss';
 
 export default function VolumeSlider() {
   const context = useContext(PlayerContext);

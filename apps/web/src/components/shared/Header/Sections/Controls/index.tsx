@@ -10,7 +10,7 @@ import ShuffleIcon from '@/components/Shared/Icons/Shuffle';
 import PlayerContext from '@/hooks/player-context';
 import { useContext, useState } from 'react';
 import HeaderButton from '../../Button';
-import styles from './index.module.css';
+import styles from './index.module.scss';
 
 export default function Controls() {
   const context = useContext(PlayerContext);

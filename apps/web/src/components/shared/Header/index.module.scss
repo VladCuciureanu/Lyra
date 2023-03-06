@@ -1,0 +1,10 @@
+.container {
+  min-width: calc(100vw - var(--sidebar-width));
+  min-height: var(--header-height);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1.25rem;
+  border-bottom: 1.5px solid #ebebeb;
+}

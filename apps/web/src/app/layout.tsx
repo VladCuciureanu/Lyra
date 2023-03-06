@@ -2,8 +2,8 @@ import Header from '@/components/Shared/Header';
 import Sidebar from '@/components/Shared/Sidebar';
 import PlayerContextWrapper from '@/components/Shared/Wrappers/PlayerContext';
 import { Inter } from 'next/font/google';
-import '../styles/globals.css';
-import styles from './layout.module.css';
+import '../styles/globals.scss';
+import styles from './layout.module.scss';
 
 export const metadata = {
   title: 'Create Next App',

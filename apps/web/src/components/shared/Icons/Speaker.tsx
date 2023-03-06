@@ -8,6 +8,7 @@ export default function SpeakerIcon(props: HTMLAttributes<SVGElement>) {
       x="0px"
       y="0px"
       viewBox="0 0 64 64"
+      {...props}
     >
       <g>
         <path

@@ -1,0 +1,13 @@
+// Light theme
+:root {
+}
+
+// Dark theme
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+
+  html {
+    color-scheme: dark;
+  }
+}
