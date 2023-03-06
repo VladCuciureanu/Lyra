@@ -1,0 +1,30 @@
+.button {
+  min-height: 1.75rem;
+  max-height: 1.75rem;
+  min-width: 2rem;
+  max-width: 2rem;
+  border-radius: 0.375rem;
+  border: 0;
+  background-color: transparent;
+  fill: #6e6e6e;
+  color: #6e6e6e;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.button:active:not(:disabled) {
+  background-color: #e5e5e5;
+  fill: #232323;
+  color: #232323;
+}
+
+.button:disabled {
+  fill: #c6c6c6;
+  color: #c6c6c6;
+}

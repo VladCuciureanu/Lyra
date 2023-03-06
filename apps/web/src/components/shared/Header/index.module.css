@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-direction: row;
-  padding-right: 1.5rem;
-  border: 1px solid blue;
+  padding-right: 1.25rem;
+  border-bottom: 1.5px solid #ebebeb;
   align-items: center;
   justify-content: space-between;
   min-width: calc(100vw - var(--sidebar-width));

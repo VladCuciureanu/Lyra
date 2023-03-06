@@ -1,8 +1,8 @@
-import Controls from './Controls';
-import ExtraButtons from './ExtraButtons';
 import styles from './index.module.css';
-import NowPlaying from './NowPlaying';
-import VolumeSlider from './VolumeSlider';
+import Controls from './Sections/Controls';
+import ExtraButtons from './Sections/ExtraButtons';
+import NowPlaying from './Sections/NowPlaying';
+import VolumeSlider from './Sections/VolumeSlider';
 
 export default function Header() {
   return (

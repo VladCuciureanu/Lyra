@@ -19,6 +19,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@lyra/schema": "^0.3.0",
     "@lyra/tsconfig": "workspace:^0.1.0",
     "@types/node": "18.14.6",
     "@types/react": "18.0.28",

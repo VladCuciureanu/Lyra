@@ -1,5 +1,6 @@
-import Header from '@/components/shared/Header';
-import Sidebar from '@/components/shared/Sidebar';
+import Header from '@/components/Shared/Header';
+import Sidebar from '@/components/Shared/Sidebar';
+import PlayerContextWrapper from '@/components/Shared/Wrappers/PlayerContext';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
 import styles from './layout.module.css';
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className={styles['main-container']}>
-          <Sidebar />
-          <div className={styles['secondary-container']}>
-            <Header />
-            {children}
+        <PlayerContextWrapper>
+          <div className={styles['main-container']}>
+            <Sidebar />
+            <div className={styles['secondary-container']}>
+              <Header />
+              {children}
+            </div>
           </div>
-        </div>
+        </PlayerContextWrapper>
       </body>
     </html>
   );

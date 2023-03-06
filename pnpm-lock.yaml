@@ -61,6 +61,7 @@ importers:
 
   apps/web:
     specifiers:
+      '@lyra/schema': ^0.3.0
       '@lyra/tsconfig': workspace:^0.1.0
       '@types/node': 18.14.6
       '@types/react': 18.0.28
@@ -77,6 +78,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
+      '@lyra/schema': 0.3.0
       '@lyra/tsconfig': link:../../packages/tsconfig
       '@types/node': 18.14.6
       '@types/react': 18.0.28
@@ -166,6 +168,22 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@lyra/generate-help-url/0.3.0:
+    resolution: {integrity: sha512-vwAKPXj7Cu5Nhvn1tDjioOibz+Tfa+D9mSZ8hiKwZhQzazJ25nuaaI3+J2jSs0GbOpRZfzakHw3bJ2ZwSXWlMw==}
+    dev: true
+
+  /@lyra/schema/0.3.0:
+    resolution: {integrity: sha512-Y0Z4T8hCXh9ZBT78Rcoj+u+GIRvdzp3Fu0OjuFDejiAoePxzja8RO1CAJ3vY4XbLPlfrLDyAUIr0/swibjjFzA==}
+    dependencies:
+      '@lyra/generate-help-url': 0.3.0
+      arrify: 1.0.1
+      humanize-list: 1.0.1
+      json-reduce: 1.0.0
+      leven: 2.1.0
+      lodash: 4.17.21
+      object-inspect: 1.12.3
     dev: true
 
   /@mapbox/node-pre-gyp/1.0.10:
@@ -881,6 +899,11 @@ packages:
       es-abstract: 1.21.1
       es-shim-unscopables: 1.0.0
       get-intrinsic: 1.2.0
+    dev: true
+
+  /arrify/1.0.1:
+    resolution: {integrity: sha512-3CYzex9M9FGQjCGMGyi6/31c8GJbgb0qGyrx5HWxPd0aCwh4cB2YjMb2Xf9UuoogrMrlO9cTqnB5rI5GHZTcUA==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /ast-types-flow/0.0.7:
@@ -2147,6 +2170,10 @@ packages:
       - supports-color
     dev: false
 
+  /humanize-list/1.0.1:
+    resolution: {integrity: sha512-4+p3fCRF21oUqxhK0yZ6yaSP/H5/wZumc7q1fH99RkW7Q13aAxDeP78BKjoR+6y+kaHqKF/JWuQhsNuuI2NKtA==}
+    dev: true
+
   /iconv-lite/0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -2392,6 +2419,10 @@ packages:
       argparse: 2.0.1
     dev: true
 
+  /json-reduce/1.0.0:
+    resolution: {integrity: sha512-UYqT1LHC3asUt1hiSjz+ikPUHq6SWHBQHrRvRblD6RTQisgw9nKEOa79OYgJXDIHb9Z92EyIno4DslNWwSm1hQ==}
+    dev: true
+
   /json-schema-traverse/0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
     dev: true
@@ -2466,6 +2497,11 @@ packages:
     resolution: {integrity: sha512-qJhlO9cGXi6hBGKoxEG/sKZDAHD5Hnu9Hs4WbOY3pCWXDhw0N8x1NenNzm2EnNLkLkk7J2SdxAkDSbb6ftT+UQ==}
     dependencies:
       language-subtag-registry: 0.3.22
+    dev: true
+
+  /leven/2.1.0:
+    resolution: {integrity: sha512-nvVPLpIHUxCUoRLrFqTgSxXJ614d8AgQoWl7zPe/2VadE8+1dpU3LBhowRuBAcuwruWtOdD8oYC9jDNJjXDPyA==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /levn/0.4.1:
