@@ -14,14 +14,14 @@ import styles from './index.module.scss';
 
 export default function Controls() {
   const context = useContext(PlayerContext);
-  const hasNoTrack = false; //context.track === undefined;
+  const hasNoTrack = context.track === undefined;
 
   return (
     <div className={styles.container}>
       <HeaderButton
         style={{
-          color: context.shuffle ? '#e63e44' : undefined,
-          fill: context.shuffle ? '#e63e44' : undefined,
+          color: context.shuffle ? 'var(--accent-color)' : undefined,
+          fill: context.shuffle ? 'var(--accent-color)' : undefined,
         }}
         disabled={hasNoTrack}
         onClick={() => toggleShuffle()}
@@ -43,15 +43,17 @@ export default function Controls() {
       </HeaderButton>
       <HeaderButton
         disabled={hasNoTrack}
-        style={{ color: context.replay ? '#e63e44' : undefined }}
+        style={{ color: context.replay ? 'var(--accent-color)' : undefined }}
         onClick={() => toggleReplay()}
       >
         {context.replay === 1 ? (
-          <RepeatOnceIcon style={{ maxWidth: '.9rem', fill: '#e63e44' }} />
+          <RepeatOnceIcon
+            style={{ maxWidth: '.9rem', fill: 'var(--accent-color)' }}
+          />
         ) : (
           <RepeatIcon
             style={{
-              fill: context.replay === true ? '#e63e44' : undefined,
+              fill: context.replay === true ? 'var(--accent-color)' : undefined,
               maxWidth: '.9rem',
             }}
           />

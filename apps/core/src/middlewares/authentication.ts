@@ -12,6 +12,8 @@ export const authenticate = async (
 ) => {
   try {
     const token = req.headers.authorization!.split(' ')[1];
+    // const cookies = parseCookies(req.headers.cookie!);
+    // const token = cookies['token'];
     const payload: JWTPayload = jwt.verify(token, env.JWT_SECRET) as JWTPayload;
     res.locals.user = payload.context.user;
     next();

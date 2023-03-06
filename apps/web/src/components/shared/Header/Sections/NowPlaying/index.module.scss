@@ -8,11 +8,12 @@
   flex-direction: row;
   align-items: center;
   gap: 0.1rem;
+  overflow: hidden;
 }
 
 .artwork {
-  width: calc(var(--header-height) - 0.5rem);
-  height: calc(var(--header-height) - 0.5rem);
+  width: calc(var(--header-height) - 0.5rem - 2px);
+  height: 100%;
   background-color: #bfbfbf;
 }
 
@@ -24,4 +25,5 @@
   background-color: red;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
