@@ -17,7 +17,7 @@ export default function Controls() {
   const hasNoTrack = context.track === undefined;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.Container}>
       <HeaderButton
         style={{
           color: context.shuffle ? 'var(--accent-color)' : undefined,

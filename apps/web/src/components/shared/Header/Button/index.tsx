@@ -5,7 +5,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function HeaderButton(props: ButtonProps) {
   return (
-    <button className={styles.button} {...props}>
+    <button className={styles.Button} {...props}>
       {props.children}
     </button>
   );

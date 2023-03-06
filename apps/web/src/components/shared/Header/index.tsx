@@ -6,7 +6,7 @@ import VolumeSlider from './Sections/VolumeSlider';
 
 export default function Header() {
   return (
-    <header className={styles.container}>
+    <header className={styles.Container}>
       <div id="offset" />
       <Controls />
       <NowPlaying />

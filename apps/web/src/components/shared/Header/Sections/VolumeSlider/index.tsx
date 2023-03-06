@@ -11,10 +11,10 @@ import styles from './index.module.scss';
 export default function VolumeSlider() {
   const context = useContext(PlayerContext);
   return (
-    <div className={styles.container}>
+    <div className={styles.Container}>
       <button
         onClick={() => context.setVolume(0)}
-        className={styles.button}
+        className={styles.Button}
         style={{ marginRight: '-0.25rem' }}
       >
         <SpeakerIcon />
@@ -30,7 +30,7 @@ export default function VolumeSlider() {
         </Slider.Track>
         <Slider.Thumb className={styles.SliderThumb} />
       </Slider.Root>
-      <button onClick={() => context.setVolume(100)} className={styles.button}>
+      <button onClick={() => context.setVolume(100)} className={styles.Button}>
         <SpeakerWavesIcon />
       </button>
     </div>

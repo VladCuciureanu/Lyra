@@ -9,8 +9,8 @@ import ProgressBar from './ProgressBar';
 export default function NowPlaying() {
   const context = useContext(PlayerContext);
   return (
-    <div className={styles.container}>
-      <div className={styles.artwork}>
+    <div className={styles.Container}>
+      <div className={styles.Artwork}>
         {context?.track && (
           <Image
             src={context.track.album.image}
@@ -18,12 +18,14 @@ export default function NowPlaying() {
           />
         )}
       </div>
-      {context?.track && (
-        <div className={styles['info-block']}>
+      {context?.track ? (
+        <div className={styles.InfoBlock}>
           <div>Title</div>
           <div>Artist - Album</div>
           <ProgressBar />
         </div>
+      ) : (
+        <div className={styles.SkeletonBlock}>Lyra</div>
       )}
     </div>
   );

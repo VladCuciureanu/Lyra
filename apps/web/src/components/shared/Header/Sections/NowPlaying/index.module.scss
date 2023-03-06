@@ -1,4 +1,4 @@
-.container {
+.Container {
   background-color: #fff;
   width: 40%;
   height: calc(var(--header-height) - 0.5rem);
@@ -11,13 +11,13 @@
   overflow: hidden;
 }
 
-.artwork {
-  width: calc(var(--header-height) - 0.5rem - 2px);
+.Artwork {
   height: 100%;
-  background-color: #bfbfbf;
+  background-color: #e9e9e9;
+  aspect-ratio: 1/1;
 }
 
-.info-block {
+.InfoBlock {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,4 +26,16 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+}
+
+.SkeletonBlock {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #999999;
+  fill: #999999;
 }

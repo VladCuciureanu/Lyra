@@ -24,9 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <PlayerContextWrapper>
-          <div className={styles['main-container']}>
+          <div className={styles.MainContainer}>
             <Sidebar />
-            <div className={styles['secondary-container']}>
+            <div className={styles.SecondaryContainer}>
               <Header />
               {children}
             </div>

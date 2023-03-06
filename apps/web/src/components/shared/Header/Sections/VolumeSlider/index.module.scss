@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-.container {
+.Container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,7 +8,7 @@
   max-width: 9.25rem;
 }
 
-.button {
+.Button {
   width: 1.05rem;
   min-height: 1.75rem;
   max-height: 1.75rem;
