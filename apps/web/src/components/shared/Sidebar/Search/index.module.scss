@@ -1,0 +1,18 @@
+.Container {
+  width: 100%;
+  background-color: #bcbcbb;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  border: 0.1rem solid #b2b2b4;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: smaller;
+  }
+}
