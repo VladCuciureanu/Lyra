@@ -7,6 +7,7 @@ _refreshEnv();
 
 function _refreshEnv() {
   loadEnv();
+  process.env.PORT = process.env.CORE_PORT;
   env = {
     ...defaultEnv,
     ...process.env,
