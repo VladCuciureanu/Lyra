@@ -4,7 +4,8 @@
   "description": "The first-party web client for Lyra.",
   "author": {
     "name": "Vlad Cuciureanu",
-    "email": "vlad.cuciureanu@pm.me"
+    "email": "vlad.cuciureanu@pm.me",
+    "url": "vladcuciureanu.com"
   },
   "license": "GPL-3.0-only",
   "scripts": {
