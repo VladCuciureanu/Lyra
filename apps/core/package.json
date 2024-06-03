@@ -4,8 +4,8 @@
   "description": "The core behind Lyra, the self-hosted music streaming service.",
   "author": {
     "name": "Vlad Cuciureanu",
-    "email": "vlad.cuciureanu@pm.me",
-    "url": "vladcuciureanu.com"
+    "email": "vlad@cuciureanu.me",
+    "url": "https://vlad.cuciureanu.me"
   },
   "license": "GPL-3.0-only",
   "scripts": {

@@ -4,8 +4,8 @@
   "description": "Self-hosted music streaming service that allows you to take your high-fidelity music collection anywhere.",
   "author": {
     "name": "Vlad Cuciureanu",
-    "email": "vlad.cuciureanu@pm.me",
-    "url": "vladcuciureanu.com"
+    "email": "vlad@cuciureanu.me",
+    "url": "https://vlad.cuciureanu.me"
   },
   "license": "GPL-3.0-only",
   "scripts": {
